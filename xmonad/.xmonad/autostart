@@ -1,0 +1,104 @@
+#!/bin/sh
+
+set +x
+set +e
+
+STARTUPLOG=/home/ben/.xmonad/startup.log
+
+echo "Startup log" > $STARTUPLOG
+echo $(date) >> $STARTUPLOG
+
+# This stuff runs only for xmonad
+#----------------------------------------------------------------------
+# wmname xmonad
+
+# Produces the expected left curser
+echo "xsetroot" >> $STARTUPLOG
+xsetroot -cursor_name left_ptr
+
+# # starts xScreenSaver at boot
+# if [[ -z "$(pgrep xscreensaver)" ]]; then
+#     /usr/bin/xscreensaver -no-splash &
+# else
+#     pkill xscreensaver
+#     /usr/bin/xscreensaver -no-splash &
+# fi
+
+# Add the menu key to the mod4 list
+# echo "xmodmap" >> $STARTUPLOG
+# xmodmap -e "add Mod4 = Menu"
+
+# # Starts the compositing manager
+# echo "xcompmgr" >> $STARTUPLOG
+# if [[ -z "$(pgrep xcompmgr)" ]]; then
+#     xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+# else
+#     pkill xcompmgr
+#     xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+# fi
+
+# echo "terminator" >> $STARTUPLOG
+# # Starts a background terminal w/ tabbed htop
+# if [[ -z "$(pgrep -f terminator)" ]]; then
+#     terminator -b --geometry=1365x752+0+16 &
+# else
+#     pkill terminator
+#     terminator -b --geometry=1365x752+0+16 &
+# fi
+
+#
+# Set up an icon tray
+# echo "trayer" >> $STARTUPLOG
+# if [ -z "$(pgrep trayer)" ]; then
+#     trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 14 --transparent true --tint 0x000000 --alpha 0 --height 16 &
+# else
+#     pkill trayer
+#     trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 14 --transparent true --tint 0x000000 --alpha 0 --height 16 &
+# fi
+
+# Put the indicator applet into the system tray
+# comment
+# /usr/lib/x86_64-linux-gnu/indicator-applet &
+
+# Start wallpaper cycling
+# /home/jmiller/myscripts/cycle_wallpaer.sh 1h &
+
+#dbus-launch xfce4-power-manager &
+# dbus-launch xfce4-volumed &
+# Starts .desktop files.
+#if [[ -z "$(pgrep nm-applet)" ]]; then
+#    /home/jonah/dex/dex -a
+#fi
+# /home/ben/dex/dex -a -e xmonad
+
+# Start the notification daemon. Done  by Dex now.
+#exec /usr/lib/notification-daemon/notification-daemon
+
+# Tells Java that Xmonad is non-reparenting
+# _JAVA_AWT_WM_NONREPARENTING=1
+# export _JAVA_AWT_WM_NONREPARENTING
+# wmname LG3D
+#dropbox start -i
+
+
+# python3 /home/brightside/myscripts/randomwallpaper.py
+# /home/brightside/myscripts/cycle_wallpaper.sh 30m &
+
+#####################################
+echo "Starting Tray Apps" >> $STARTUPLOG
+
+# Set up an icon tray
+stalonetray &
+
+# Fire up apps
+if [ -x /usr/bin/nm-applet ] ; then
+   nm-applet --sm-disable &
+fi
+
+clipit &
+
+redshift-gtk -l 43.47:-80.55 &
+
+/home/ben/.wine/drive_c/Program\ Files\ \(x86\)/1Password\ 4/Agile1pAgent.exe &
+
+dropbox start &
