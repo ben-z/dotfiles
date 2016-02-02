@@ -22,7 +22,7 @@ Config {
     ],
     sepChar  = "%",
     alignSep = "}{",
-    template = "> %StdinReader% }{ Volume: %volume%    %battery%    %date%    %username%     "
+    template = "> %StdinReader% }{ Volume: %volume%    %battery%    %date%    %username%   "
     border           = NoBorder,
     borderColor      = "#ffffff",
     allDesktops      = True,
