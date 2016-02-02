@@ -35,7 +35,7 @@ xmonad $ defaultConfig
       	, ((0,0x1008ff12), spawn "amixer set Master toggle && amixer set Speaker unmute && amixer set Headphone unmute")
       	, ((0,0x1008ff13), spawn "amixer set Master 2+")
       	, ((0,0x1008ff11), spawn "amixer set Master 2-")
-        , ((mod4Mask, xK_l), spawn "slock")
+        -- , ((mod4Mask, xK_l), spawn "slock")
         ]
       --  `additionalKeys`
       --   [ ((mod1Mask, xK_t), spawn "lxterminal")

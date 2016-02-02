@@ -7,7 +7,7 @@
 -- slimTemplate = "  %StdinReader% }{ <fc=#888888><fc=#6b2c74><icon=.xmonad/icons/down.xbm/></fc><fc=#88591b><icon=.xmonad/icons/up.xbm/></fc>  %dynnetwork%  <fc=#2c4b50><icon=.xmonad/icons/cpu.xbm/></fc> %multicpu%   <fc=#366136><icon=.xmonad/icons/mem.xbm/></fc> %memory%</fc>   <fc=#7c3131><icon=.xmonad/icons/battery.xbm/></fc> %battery%       %date%  "
 
 Config {
-    font         = "xft:ProggyTiny:pixelsize=10:antialias=true",
+    font         = "xft:DejaVu Sans Mono:pixelsize=10:antialias=true",
     bgColor      = "#2d2d2d",
     fgColor      = "#ffffff",
     position     = Static {xpos=0, ypos=0, width=1206, height=16},
@@ -15,13 +15,14 @@ Config {
     commands     = [
         Run Battery ["-t", "Batt: <left>%"] 600,
         Run Date "%a %b %_d %l:%M" "date" 10,
-        Run Com "/home/ben/.xmonad/scripts/username.sh" [] "username" 0,
-        Run Com "/home/ben/.xmonad/scripts/volume.sh" [] "myvolume" 10,
+        Run Com "whoami" [] "username" 0,
+        -- Run Com "/home/ben/.xmonad/scripts/wireless.sh" [] "wifi" 30,
+        Run Com "/home/ben/.xmonad/scripts/volume.sh" [] "volume" 1,
         Run StdinReader
     ],
     sepChar  = "%",
     alignSep = "}{",
-    template = "> %StdinReader% }{ Volume: %myvolume%       %battery%       %date%       %username%     "
+    template = "> %StdinReader% }{ Volume: %volume%    %battery%    %date%    %username%     "
     border           = NoBorder,
     borderColor      = "#ffffff",
     allDesktops      = True,
