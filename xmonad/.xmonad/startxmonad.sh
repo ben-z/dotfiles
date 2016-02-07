@@ -1,20 +1,20 @@
-#!/bin/bash
-
-# Load resources
-
-# xrdb -merge .Xresources
-
-# # Set up an icon tray
-# stalonetray &
+# #!/bin/bash
 #
-# # Fire up apps
+# # Load resources
 #
-# # xscreensaver -no-splash &
+# # xrdb -merge .Xresources
 #
-# if [ -x /usr/bin/nm-applet ] ; then
-#    nm-applet --sm-disable &
-# fi
+# # # Set up an icon tray
+# # stalonetray &
+# #
+# # # Fire up apps
+# #
+# # # xscreensaver -no-splash &
+# #
+# # if [ -x /usr/bin/nm-applet ] ; then
+# #    nm-applet --sm-disable &
+# # fi
+# #
+# # drobox start
 #
-# drobox start
-
-exec xmonad
+exec ~/.Xsession

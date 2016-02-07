@@ -1,6 +1,7 @@
 -- xmobar config used by Vic Fryzel
 -- Author: Yuri Setiantoko
 -- Modified by Ben Zhang
+-- File Location: %HOME%/.xmobarrc
 -- This is setup for single monitor with resolution of 1366x768
 
 -- defaultTemplate = "%StdinReader% }{ %multicpu%   %memory%   %eno1% %wlo1% <fc=#ffaff>battery:</fc>  <fc=#FFFFCC>%date%</fc>   %KPAO% | %uname%"

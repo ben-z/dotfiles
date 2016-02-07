@@ -1,0 +1,58 @@
+# decorations none
+# transparent false
+# dockapp_mode none
+# geometry 5x1-400+0
+# max_geometry 5x1-325-10
+# background "#000000"
+# kludges force_icons_size
+# grow_gravity NE
+# icon_gravity NE
+# icon_size 12
+# sticky true
+# #window_strut none
+# window_type dock
+# window_layer bottom
+# #no_shrink false
+# skip_taskbar true
+#
+# # Icons stick to right side of tray
+# icon_gravity E
+# # Five icons wide, one high, 0 pixels from right, 0 from top
+# geometry 50x1-0+0
+# # geometry 104x48-4-4
+# # max_geometry 5x1-0+0
+# # Black background
+# background "#000000"
+# # Doesn't appear in a task bar (not a problem for us?)
+# skip_taskbar
+# # Icons are 12 pixels high
+# # icon_size 12
+# # kludges force_icons_size
+# # Tell xmonad "Stand back, I got this"
+# window_strut none
+
+
+background "#2d2d2d"
+decorations none
+dockapp_mode none
+fuzzy_edges 0
+geometry 10x1+1206+0 # position x:1206 y:0
+grow_gravity NW
+icon_gravity NW
+icon_size 16
+log_level err
+kludges force_icons_size
+max_geometry 0x0
+no_shrink false
+parent_bg false
+scrollbars none
+skip_taskbar true
+sticky true
+tint_color white
+tint_level 0  # color range - 0 255
+transparent false
+vertical false
+window_layer normal
+window_strut auto
+window_type dock
+xsync false
