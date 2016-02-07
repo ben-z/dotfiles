@@ -32,7 +32,7 @@ myScreensaver = "/usr/bin/gnome-screensaver-command --lock"
 
 -- The command to take a selective screenshot, where you select
 -- what you'd like to capture on the screen.
-mySelectScreenshot = "$(select-screenshot)"
+mySelectScreenshot = "select-screenshot"
 
 -- The command to take a fullscreen screenshot.
 myScreenshot = "screenshot"
@@ -152,7 +152,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn myLauncher)
 
   -- Take a selective screenshot using the command specified by mySelectScreenshot.
-  , ((modMask .|. shiftMask, xK_o),
+  , ((modMask .|. shiftMask, xK_p),
      spawn mySelectScreenshot)
 
   -- Take a full screenshot using the command specified by myScreenshot.
