@@ -9,3 +9,4 @@ xmonad/.xmonad/*.swp
 xmonad/.xmonad/history
 
 *~
+*.bak

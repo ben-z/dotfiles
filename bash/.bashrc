@@ -122,3 +122,5 @@ export PATH="$PATH:$HOME/.xmonad/audio/control"
 export NVM_DIR="/home/ben/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="$PATH:$HOME/.xmonad/bin"
+export BASH_ENV="$BASH_ENV:$HOME/.bash_aliases"
+
