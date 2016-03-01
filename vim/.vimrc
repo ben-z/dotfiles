@@ -110,3 +110,14 @@ set smarttab
 
 " always uses spaces instead of tab characters
 set expandtab
+
+set pastetoggle=<F2>
+
+augroup auto_comment
+  au!
+  au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
+
+
+
+
