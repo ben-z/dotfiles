@@ -6,6 +6,7 @@ alias packants='cd ~/Documents/packants'
 alias packantsapi='cd ~/Documents/packants/API'
 alias packantslanding='cd ~/Documents/packants/landing-pages'
 alias packantsportal='cd ~/Documents/packants/portal'
+alias packantsportalui='cd ~/Documents/packants/portal-ui'
 alias l="ls -la"
 alias dotfiles="cd ~/Documents/dotfiles"
 alias treenodoc="tree -I 'node_modules|jsdoc|docs'"
