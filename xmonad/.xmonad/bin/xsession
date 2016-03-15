@@ -52,6 +52,9 @@ google-chrome &
 # Start Dropbox
 dropbox start &
 
+# Start BitTorrent sync
+~/desktop-programs/btsync/btsync --storage ~/.btsync/ &
+
 # Start screensaver
 # Kill gnome-screensaver if started by default
 killall gnome-screensaver &
