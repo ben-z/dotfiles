@@ -1,0 +1,7 @@
+# Place this file in /usr/share/xsessions/xmonad.desktop
+[Desktop Entry]
+Name=XMonad
+Comment=Lightweight tiling window manager
+Exec=/home/ben/.xmonad/startxmonad.sh
+Icon=xmonad.png
+Type=XSession
