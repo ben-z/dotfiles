@@ -10,3 +10,4 @@ xmonad/.xmonad/history
 
 *~
 *.bak
+.netrwhist*
