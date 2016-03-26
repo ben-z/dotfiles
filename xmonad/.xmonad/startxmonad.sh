@@ -25,6 +25,7 @@ xcompmgr -n &
 
 # Turn off virtual display
 xrandr --output VGA-1-1 --off
+xrandr --output VGA-1-2 --off
 
 echo "Starting Tray Apps" >> $STARTUPLOG
 # Start the system tray
@@ -58,7 +59,7 @@ dropbox start &
 # Start screensaver
 # Kill gnome-screensaver if started by default
 killall gnome-screensaver &
-xscreensaver -no-splash &
+# xscreensaver -no-splash &
 
 # # Start sound server
 # pulseaudio --start &

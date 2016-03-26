@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="autostart" mtime="1440559324" type="string">
+		<stringvalue>1</stringvalue>
+	</entry>
+	<entry name="longitude" mtime="1441237483" type="string">
+		<stringvalue>-80.5346</stringvalue>
+	</entry>
+	<entry name="latitude" mtime="1441237483" type="string">
+		<stringvalue>43.4698</stringvalue>
+	</entry>
+	<entry name="colortemp" mtime="1447549754" type="string">
+		<stringvalue>1</stringvalue>
+	</entry>
+</gconf>

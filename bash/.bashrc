@@ -113,8 +113,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH="$PATH:/home/ben/desktop-programs/flow/"
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/Documents/swift/usr/bin"
 export PATH="$PATH:$HOME/.xmonad/audio/control"

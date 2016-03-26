@@ -176,6 +176,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 	, ((0,0x1008ff13), spawn "amixer set Master 2+")
 	, ((0,0x1008ff11), spawn "amixer set Master 2-")
   , ((mod4Mask, xK_l), spawn "slock")
+  , ((mod4Mask, xK_g), spawn "google-chrome")
   , ((0,0x1008ffa9), spawn "toggle-touchpad")
 
   -- Audio previous.
