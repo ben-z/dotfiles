@@ -19,11 +19,12 @@ Config {
         Run Com "whoami" [] "username" 0,
         -- Run Com "/home/ben/.xmonad/scripts/wireless.sh" [] "wifi" 30,
         Run Com "/home/ben/.xmonad/scripts/volume.sh" [] "volume" 1,
+        Run Com "/home/ben/.xmonad/scripts/brightness.sh" [] "brightness" 1,
         Run StdinReader
     ],
     sepChar  = "%",
     alignSep = "}{",
-    template = "> %StdinReader% }{ Volume: %volume%    %battery%    %date%    %username%   "
+    template = "> %StdinReader% }{ Brightness: %brightness%    Volume: %volume%    %battery%    %date%    %username%   "
     border           = NoBorder,
     borderColor      = "#ffffff",
     allDesktops      = True,
