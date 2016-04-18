@@ -72,6 +72,7 @@ myManageHook = composeAll
     , className =? "VirtualBox"     --> doShift "4:vm"
     , className =? "Atom"           --> doShift "3:code"
     , className =? "Sublime_text"   --> doShift "3:code"
+    , className =? "Code"           --> doShift "3:code"
     , className =? "stalonetray"    --> doIgnore
     , className =? "Skype"          --> doShift "5:media"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
