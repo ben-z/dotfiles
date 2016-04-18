@@ -72,13 +72,14 @@ dropbox start &
 # Start screensaver
 # Kill gnome-screensaver if started by default
 # killall gnome-screensaver &
+gnome-screensaver &
 # xscreensaver -no-splash &
 
 # # Start sound server
 # pulseaudio --start &
 
 # Fix software installation failures (no password prompt)
-# /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 echo "Starting xmonad" >> $STARTUPLOG
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session xmonad
