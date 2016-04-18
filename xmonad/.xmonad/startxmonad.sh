@@ -19,6 +19,8 @@ xsetroot -cursor_name left_ptr &
 echo "xrdb" >> $STARTUPLOG
 xrdb -merge ~/.Xdefaults &
 
+# xpmroot ~/background.xpm &
+
 # Start a window compositor. This ensures Google Chrome paints correctly.
 echo "xcompmgr" >> $STARTUPLOG
 xcompmgr -n &
@@ -31,25 +33,36 @@ echo "Starting Tray Apps" >> $STARTUPLOG
 # Start the system tray
 stalonetray &
 
+echo "Starting Network Manager" >> $STARTUPLOG
 # Start the network manager
 nm-applet --sm-disable &
 
+echo "Starting Clipboard Manager" >> $STARTUPLOG
 # Start the clipboard manager
 clipit &
 
+echo "Starting Terminals" >> $STARTUPLOG
 # Start two terminals
 gnome-terminal &
 gnome-terminal &
 
+echo "Starting Redshift" >> $STARTUPLOG
 # Start RedShift
 redshift-gtk -l 43.47:-80.55 &
 
+echo "Starting Browser" >> $STARTUPLOG
 # Start a browser
 google-chrome &
 
+echo "Starting 1Password Agent" >> $STARTUPLOG
 # Start 1Password
-/home/ben/.wine/drive_c/Program\ Files\ \(x86\)/1Password\ 4/Agile1pAgent.exe &
+/usr/share/playonlinux/playonlinux --run "Agile1pAgent" %F &
 
+echo "Starting Nautilus" >> $STARTUPLOG
+# Start Nautilus without a default window
+nautilus -n &
+
+echo "Starting Dropbox" >> $STARTUPLOG
 # Start Dropbox
 dropbox start &
 
@@ -58,12 +71,14 @@ dropbox start &
 
 # Start screensaver
 # Kill gnome-screensaver if started by default
-killall gnome-screensaver &
+# killall gnome-screensaver &
 # xscreensaver -no-splash &
 
 # # Start sound server
 # pulseaudio --start &
 
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# Fix software installation failures (no password prompt)
+# /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
+echo "Starting xmonad" >> $STARTUPLOG
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session xmonad

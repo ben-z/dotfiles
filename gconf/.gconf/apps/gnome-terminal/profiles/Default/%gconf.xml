@@ -1,26 +1,19 @@
 <?xml version="1.0"?>
 <gconf>
-	<entry name="login_shell" mtime="1460941803" type="bool" value="true"/>
-	<entry name="background_darkness" mtime="1460941803" type="float" value="0.76180297136306763"/>
-	<entry name="bold_color_same_as_fg" mtime="1440486450" type="bool" value="true"/>
-	<entry name="use_theme_colors" mtime="1440487439" type="bool" value="true"/>
-	<entry name="background_type" mtime="1460941803" type="string">
-		<stringvalue>transparent</stringvalue>
+	<entry name="palette" mtime="1460955677" type="string">
+		<stringvalue>#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC</stringvalue>
 	</entry>
-	<entry name="palette" mtime="1460941803" type="string">
-		<stringvalue>#000000000000:#CDCB00000000:#0000CDCB0000:#CDCBCDCB0000:#1E1A908FFFFF:#CDCB0000CDCB:#0000CDCBCDCB:#E5E2E5E2E5E2:#4CCC4CCC4CCC:#FFFF00000000:#0000FFFF0000:#FFFFFFFF0000:#46458281B4AE:#FFFF0000FFFF:#0000FFFFFFFF:#FFFFFFFFFFFF</stringvalue>
-	</entry>
-	<entry name="alternate_screen_scroll" mtime="1460941803" type="bool" value="true"/>
-	<entry name="background_color" mtime="1460941803" type="string">
+	<entry name="alternate_screen_scroll" mtime="1460955677" type="bool" value="true"/>
+	<entry name="background_color" mtime="1460955677" type="string">
 		<stringvalue>#FFFFFFFFDDDD</stringvalue>
 	</entry>
-	<entry name="visible_name" mtime="1460941803" type="string">
+	<entry name="visible_name" mtime="1460955677" type="string">
 		<stringvalue>Default</stringvalue>
 	</entry>
-	<entry name="bold_color" mtime="1460941803" type="string">
+	<entry name="bold_color" mtime="1460955677" type="string">
 		<stringvalue>#000000000000</stringvalue>
 	</entry>
-	<entry name="foreground_color" mtime="1460941803" type="string">
+	<entry name="foreground_color" mtime="1460955677" type="string">
 		<stringvalue>#000000000000</stringvalue>
 	</entry>
 </gconf>
