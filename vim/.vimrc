@@ -9,6 +9,9 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
 
+call pathogen#infect()
+call pathogen#helptags()
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -51,6 +54,14 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
+
+  colorscheme solarized
+  if $ITERM_PROFILE == 'Solarized Dark'
+    set background=dark
+  endif
+  if $ITERM_PROFILE == 'Solarized Light'
+    set background=light
+  endif
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -118,6 +129,13 @@ augroup auto_comment
   au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
+" let g:rspec_command = '!zeus rspec {spec}'
+let g:rspec_command = '!bundle exec rspec {spec}'
 
-
+nmap <F8> :TagbarToggle<CR>

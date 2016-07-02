@@ -1,5 +1,3 @@
-shopt -s expand_aliases  
-
 alias lsp='lsof -i -n -P | grep LISTEN' # List listening ports by current user
 alias lspa='sudo lsof -i -n -P | grep LISTEN' # List listening ports by all users
 alias packants='cd ~/Documents/packants'
@@ -15,8 +13,8 @@ alias dotfiles="cd ~/Documents/dotfiles"
 alias treenodoc="tree -I 'node_modules|jsdoc|docs'"
 alias cv="cd ~/Documents/CV"
 alias doc="cd ~/Documents"
-
-mysqlcli() {
-  docker run -it --link $1:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
-}
+alias 500px="cd ~/Documents/500px && docker-init"
+alias 500px_2="cd ~/Documents/500px_2 && docker-init"
+alias plat="cd ~/Documents/platform && docker-init"
+alias wbff="cd ~/Documents/web-bff-service && docker-init"
 
