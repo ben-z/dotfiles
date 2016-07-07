@@ -17,4 +17,4 @@ alias 500px="cd ~/Documents/500px && docker-init"
 alias 500px_2="cd ~/Documents/500px_2 && docker-init"
 alias plat="cd ~/Documents/platform && docker-init"
 alias wbff="cd ~/Documents/web-bff-service && docker-init"
-
+alias vimgo="vim -u ~/.vimrc.go"
