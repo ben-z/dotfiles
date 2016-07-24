@@ -13,3 +13,6 @@
 [submodule "vim/.vim/bundle/vim-rspec"]
 	path = vim/.vim/bundle/vim-rspec
 	url = https://github.com/thoughtbot/vim-rspec.git
+[submodule "vim/.vim/bundle/vim-instant-markdown"]
+	path = vim/.vim/bundle/vim-instant-markdown
+	url = https://github.com/suan/vim-instant-markdown.git
