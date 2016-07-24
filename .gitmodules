@@ -16,3 +16,6 @@
 [submodule "vim/.vim/bundle/vim-instant-markdown"]
 	path = vim/.vim/bundle/vim-instant-markdown
 	url = https://github.com/suan/vim-instant-markdown.git
+[submodule "vim/.vim/bundle/vim-pug"]
+	path = vim/.vim/bundle/vim-pug
+	url = https://github.com/digitaltoad/vim-pug.git
