@@ -124,6 +124,9 @@ set expandtab
 
 set pastetoggle=<F2>
 
+" back up to another directory
+set backupdir=~/.vimbackup,/tmp
+
 augroup auto_comment
   au!
   au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
