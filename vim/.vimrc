@@ -34,6 +34,12 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+" Hybrid line number, requires vim 7.4
+if v:version >= 704
+  set relativenumber
+  set number
+endif
+
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
