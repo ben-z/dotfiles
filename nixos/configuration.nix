@@ -42,6 +42,7 @@
     haskellPackages.xmonad
     haskellPackages.xmonad-contrib
     haskellPackages.xmonad-extras
+    stalonetray
   ];
 
   # List services that you want to enable:

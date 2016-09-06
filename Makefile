@@ -15,6 +15,7 @@ BASH_DOTFILES_PATH = bash
 
 # xmonad
 DOT_XMONAD_PATH = ~/.xmonad
+DOT_STALONETRAYRC_PATH = ~/.stalonetrayrc
 DOT_XMOBARRC_PATH = ~/.xmobarrc
 XMONAD_DOTFILES_PATH = xmonad
 
@@ -66,8 +67,18 @@ endif
 	ln -s $(DOTFILES)/$(VIM_DOTFILES_PATH)/$(notdir $(VIMRC_PATH)) $(VIMRC_PATH)
 
 install-xmonad:
+ifneq ("$(wildcard $(DOT_XMONAD_PATH))","")
+	mv $(DOT_XMONAD_PATH) $(DOT_XMONAD_PATH)$(BAK_SUFFIX)
+endif
+ifneq ("$(wildcard $(DOT_XMOBARRC_PATH))","")
+	mv $(DOT_XMOBARRC_PATH) $(DOT_XMOBARRC_PATH)$(BAK_SUFFIX)
+endif
+ifneq ("$(wildcard $(DOT_STALONETRAYRC_PATH))","")
+	mv $(DOT_STALONETRAYRC_PATH) $(DOT_STALONETRAYRC_PATH)$(BAK_SUFFIX)
+endif
 	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_XMONAD_PATH)) $(DOT_XMONAD_PATH)
 	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_XMOBARRC_PATH)) $(DOT_XMOBARRC_PATH)
+	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_STALONETRAYRC_PATH)) $(DOT_STALONETRAYRC_PATH)
 
 install-nixos:
 ifneq ("$(wildcard $(NIXOS_CONFIGURATION_PATH))","")
