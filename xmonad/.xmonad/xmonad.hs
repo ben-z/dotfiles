@@ -41,6 +41,8 @@ myScreenshot = "screenshot"
 -- preset keybindings.
 myLauncher = "$(yeganesh -x -- -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#7C7C7C' -sf '#CEFFAC')"
 
+myBrowser = "chromium"
+
 
 ------------------------------------------------------------------------
 -- Workspaces
@@ -177,7 +179,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 	, ((0,0x1008ff13), spawn "amixer set Master 2+")
 	, ((0,0x1008ff11), spawn "amixer set Master 2-")
   , ((mod4Mask, xK_l), spawn "slock")
-  , ((mod4Mask, xK_g), spawn "chromium")
+  , ((mod4Mask, xK_g), spawn myBrowser)
   , ((0,0x1008ffa9), spawn "toggle-touchpad")
 
   -- Audio previous.
@@ -341,6 +343,9 @@ myStartupHook = do
   spawn "stalonetray"
   spawn "xfce4-clipman"
   spawn "nm-applet"
+  spawn myTerminal
+  spawn myTerminal
+  spawn myBrowser
 
 
 ------------------------------------------------------------------------
