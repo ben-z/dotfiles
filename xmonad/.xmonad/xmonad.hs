@@ -339,6 +339,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- By default, do nothing.
 myStartupHook =
   spawn "stalonetray"
+  spawn "clipit"
 
 
 ------------------------------------------------------------------------

@@ -35,6 +35,8 @@
     git
     gnumake
     gnupg
+    clipit
+    hicolor_icon_theme
     # For xmonad
     ghc
     terminator
