@@ -15,7 +15,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   # i18n = {
@@ -44,6 +45,7 @@
     haskellPackages.xmonad-contrib
     haskellPackages.xmonad-extras
     stalonetray
+    networkmanagerapplet
   ];
 
   # List services that you want to enable:
@@ -84,7 +86,7 @@
   users.extraUsers.ben = {
     isNormalUser = true;
     description = "Ben Zhang";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.

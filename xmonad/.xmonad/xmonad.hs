@@ -340,6 +340,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 myStartupHook = do
   spawn "stalonetray"
   spawn "xfce4-clipman"
+  spawn "nm-applet"
 
 
 ------------------------------------------------------------------------
