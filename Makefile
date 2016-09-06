@@ -68,7 +68,7 @@ endif
 
 install-xmonad:
 ifneq ("$(wildcard $(DOT_XMONAD_PATH))","")
-	mv $(DOT_XMONAD_PATH) $(DOT_XMONAD_PATH)$(BAK_SUFFIX)
+	mv -T $(DOT_XMONAD_PATH) $(DOT_XMONAD_PATH)$(BAK_SUFFIX)
 endif
 ifneq ("$(wildcard $(DOT_XMOBARRC_PATH))","")
 	mv $(DOT_XMOBARRC_PATH) $(DOT_XMOBARRC_PATH)$(BAK_SUFFIX)
