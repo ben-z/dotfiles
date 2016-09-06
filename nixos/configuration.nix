@@ -35,8 +35,7 @@
     git
     gnumake
     gnupg
-    clipit
-    hicolor_icon_theme
+    xfce.xfce4_clipman_plugin
     # For xmonad
     ghc
     terminator

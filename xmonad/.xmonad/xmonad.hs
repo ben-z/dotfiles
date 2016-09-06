@@ -337,9 +337,9 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook =
+myStartupHook = do
   spawn "stalonetray"
-  spawn "clipit"
+  spawn "xfce4-clipman"
 
 
 ------------------------------------------------------------------------
