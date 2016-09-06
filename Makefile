@@ -18,6 +18,10 @@ DOT_XMONAD_PATH = ~/.xmonad
 DOT_XMOBARRC_PATH = ~/.xmobarrc
 XMONAD_DOTFILES_PATH = xmonad
 
+# nixos
+NIXOS_DOTFILES_PATH = nixos
+NIXOS_CONFIGURATION_PATH = /etc/nixos/configuration.nix
+
 all: clean-backups update-submodules install-bash install-vim
 .PHONY: clean-backups update-submodules install-bash install-vim install-xmonad
 
@@ -64,3 +68,9 @@ endif
 install-xmonad:
 	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_XMONAD_PATH)) $(DOT_XMONAD_PATH)
 	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_XMOBARRC_PATH)) $(DOT_XMOBARRC_PATH)
+
+install-nixos:
+ifneq ("$(wildcard $(NIXOS_CONFIGURATION_PATH))","")
+	sudo mv $(NIXOS_CONFIGURATION_PATH) $(NIXOS_CONFIGURATION_PATH)$(BAK_SUFFIX)
+endif
+	sudo ln -s $(DOTFILES)/$(NIXOS_DOTFILES_PATH)/$(notdir $(NIXOS_CONFIGURATION_PATH)) $(NIXOS_CONFIGURATION_PATH)
