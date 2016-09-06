@@ -13,8 +13,13 @@ BASH_LOGOUT_PATH = ~/.bash_logout
 BASHRC_PATH = ~/.bashrc
 BASH_DOTFILES_PATH = bash
 
+# xmonad
+DOT_XMONAD_PATH = ~/.xmonad
+DOT_XMOBARRC_PATH = ~/.xmobarrc
+XMONAD_DOTFILES_PATH = xmonad
+
 all: clean-backups update-submodules install-bash install-vim
-.PHONY: clean-backups update-submodules install-bash install-vim
+.PHONY: clean-backups update-submodules install-bash install-vim install-xmonad
 
 update-submodules:
 	git submodule update --init
@@ -55,3 +60,7 @@ endif
 # link .vim and .vimrc
 	ln -s $(DOTFILES)/$(VIM_DOTFILES_PATH)/$(notdir $(VIM_PATH)) $(VIM_PATH)
 	ln -s $(DOTFILES)/$(VIM_DOTFILES_PATH)/$(notdir $(VIMRC_PATH)) $(VIMRC_PATH)
+
+install-xmonad:
+	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_XMONAD_PATH)) $(DOT_XMONAD_PATH)
+	ln -s $(DOTFILES)/$(XMONAD_DOTFILES_PATH)/$(notdir $(DOT_XMOBARRC_PATH)) $(DOT_XMOBARRC_PATH)

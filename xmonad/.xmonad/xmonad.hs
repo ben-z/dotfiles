@@ -25,7 +25,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/bin/gnome-terminal"
+myTerminal = "terminator"
 
 -- The command to lock the screen or show the screensaver.
 myScreensaver = "/usr/bin/gnome-screensaver-command --lock"
@@ -64,7 +64,7 @@ myWorkspaces = ["1:term","2:web","3:code","4:vm","5:media"] ++ map show [6..9]
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Chromium"       --> doShift "2:web"
+    [ className =? "chromium-browser" --> doShift "2:web"
     , className =? "google-chrome"  --> doShift "2:web"
     , resource  =? "desktop_window" --> doIgnore
     , className =? "Galculator"     --> doFloat
@@ -177,7 +177,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 	, ((0,0x1008ff13), spawn "amixer set Master 2+")
 	, ((0,0x1008ff11), spawn "amixer set Master 2-")
   , ((mod4Mask, xK_l), spawn "slock")
-  , ((mod4Mask, xK_g), spawn "google-chrome")
+  , ((mod4Mask, xK_g), spawn "chromium")
   , ((0,0x1008ffa9), spawn "toggle-touchpad")
 
   -- Audio previous.
@@ -345,7 +345,7 @@ myStartupHook = return ()
 -- Run xmonad with all the defaults we set up.
 --
 main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmobarrc"
+  xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaults {
       logHook = dynamicLogWithPP $ xmobarPP {
             ppOutput = hPutStrLn xmproc
