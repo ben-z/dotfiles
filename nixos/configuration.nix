@@ -78,6 +78,12 @@
       palmDetect = true;
       tapButtons = false;
       minSpeed = "0.8";
+      # prevent emulating middle button
+      fingersMap = [1 1 3];
+      buttonsMap = [1 1 3];
+      additionalOptions = ''
+        Option "EmulateMidButtonTime" "0"
+      '';
     };
   };
   # services.xserver.xkbOptions = "eurosign:e";
