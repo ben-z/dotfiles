@@ -38,6 +38,8 @@
     gnupg
     xfce.xfce4_clipman_plugin
     redshift
+    wine
+    dropbox
     # For xmonad
     ghc
     terminator
@@ -47,7 +49,10 @@
     haskellPackages.xmonad-extras
     stalonetray
     networkmanagerapplet
+    gnome3.nautilus
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   # List services that you want to enable:
 
@@ -61,6 +66,12 @@
   services.xserver = {
     enable = true;
     layout = "us";
+
+    desktopManager = {
+      gnome3.enable = false;
+      xterm.enable = false;
+    };
+
     windowManager = {
       default = "xmonad";
       xmonad = {
@@ -68,9 +79,9 @@
         enableContribAndExtras = true;
       };
     };
+
     # Enable the slim Desktop Environment.
     displayManager.slim.enable = true;
-    desktopManager.xterm.enable = false;
 
     # Trackpad
     synaptics = {

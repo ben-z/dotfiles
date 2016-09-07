@@ -347,6 +347,7 @@ myStartupHook = do
   spawn myTerminal
   spawn myTerminal
   spawn myBrowser
+  spawn "dropbox"
 
 
 ------------------------------------------------------------------------
