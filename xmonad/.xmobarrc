@@ -17,9 +17,8 @@ Config {
         Run Battery ["-t", "Batt: <left>%"] 600,
         Run Date "%a %b %_d %l:%M" "date" 10,
         Run Com "whoami" [] "username" 0,
-        -- Run Com "/home/ben/.xmonad/scripts/wireless.sh" [] "wifi" 30,
-        Run Com "/home/ben/.xmonad/scripts/volume.sh" [] "volume" 1,
-        Run Com "/home/ben/.xmonad/scripts/brightness.sh" [] "brightness" 1,
+        Run Com "/home/ben/.xmonad/scripts/xmobar-volume.sh" [] "volume" 1,
+        Run Com "/home/ben/.xmonad/scripts/xmobar-brightness.sh" [] "brightness" 1,
         Run StdinReader
     ],
     sepChar  = "%",

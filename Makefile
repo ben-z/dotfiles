@@ -28,7 +28,7 @@ TERMINATOR_DOTFILES_PATH = terminator
 TERMINATOR_CONFIGURATION_PATH = ~/.config/terminator/config
 
 all: clean-backups update-submodules install-bash install-vim
-.PHONY: clean-backups update-submodules install-bash install-vim install-xmonad
+.PHONY: clean-backups update-submodules install-bash install-vim install-xmonad install-nixos install-terminator
 
 update-submodules:
 	git submodule update --init

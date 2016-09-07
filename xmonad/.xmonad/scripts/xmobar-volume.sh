@@ -1,6 +1,14 @@
-#!/bin/bash
-brightness=$(cat /sys/class/backlight/acpi_video0/brightness)
-bars=`expr $brightness \* 10 / 15`
+#!/bin/sh
+CHANNEL=Master
+MUTED=$(amixer get ${CHANNEL} | egrep -om 1 '\[off\]|\[on\]')
+
+if [[ ${MUTED} == "[off]" ]]; then
+  echo '[--[mute]--]'
+  exit 0
+fi
+
+volume=$(amixer sget Master | awk -F"[[%]" '{print $2}')
+bars=`expr $volume / 10`
 
 case $bars in
   0)  bar='[----------]' ;;

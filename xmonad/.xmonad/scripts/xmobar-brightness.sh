@@ -1,13 +1,6 @@
 #!/bin/sh
-
-iwconfig wlan0 2>&1 | grep -q no\ wireless\ extensions\. && {
-  echo wired
-  exit 0
-}
-
-essid=`iwconfig wlan0 | awk -F '"' '/ESSID/ {print $2}'`
-stngth=`iwconfig wlan0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
-bars=`expr $stngth / 10`
+brightness=$(cat /sys/class/backlight/acpi_video0/brightness)
+bars=`expr $brightness \* 10 / 15`
 
 case $bars in
   0)  bar='[----------]' ;;
@@ -24,6 +17,6 @@ case $bars in
   *)  bar='[----!!----]' ;;
 esac
 
-echo $essid $bar
+echo $bar
 
 exit 0
