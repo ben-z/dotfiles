@@ -40,6 +40,7 @@
     redshift
     wine
     dropbox
+    unrar
     # For xmonad
     ghc
     terminator
