@@ -23,6 +23,10 @@ XMONAD_DOTFILES_PATH = xmonad
 NIXOS_DOTFILES_PATH = nixos
 NIXOS_CONFIGURATION_PATH = /etc/nixos/configuration.nix
 
+# terminator
+TERMINATOR_DOTFILES_PATH = terminator
+TERMINATOR_CONFIGURATION_PATH = ~/.config/terminator/config
+
 all: clean-backups update-submodules install-bash install-vim
 .PHONY: clean-backups update-submodules install-bash install-vim install-xmonad
 
@@ -85,3 +89,10 @@ ifneq ("$(wildcard $(NIXOS_CONFIGURATION_PATH))","")
 	sudo mv $(NIXOS_CONFIGURATION_PATH) $(NIXOS_CONFIGURATION_PATH)$(BAK_SUFFIX)
 endif
 	sudo ln -s $(DOTFILES)/$(NIXOS_DOTFILES_PATH)/$(notdir $(NIXOS_CONFIGURATION_PATH)) $(NIXOS_CONFIGURATION_PATH)
+
+install-terminator:
+	mkdir -p $(dir $(TERMINATOR_CONFIGURATION_PATH))
+ifneq ("$(wildcard $(TERMINATOR_CONFIGURATION_PATH))","")
+	mv -T $(TERMINATOR_CONFIGURATION_PATH) $(TERMINATOR_CONFIGURATION_PATH)$(BAK_SUFFIX)
+endif
+	ln -s $(DOTFILES)/$(TERMINATOR_DOTFILES_PATH)/$(notdir $(TERMINATOR_CONFIGURATION_PATH)) $(TERMINATOR_CONFIGURATION_PATH)
