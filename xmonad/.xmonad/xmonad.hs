@@ -348,6 +348,8 @@ myStartupHook = do
   spawn myTerminal
   spawn myBrowser
   spawn "dropbox"
+  spawn "unshare wine 'C:\Program Files\1Password 4\Agile1pAgent.exe'
+"
 
 
 ------------------------------------------------------------------------
