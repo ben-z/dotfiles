@@ -343,6 +343,7 @@ myStartupHook = do
   spawn "stalonetray"
   spawn "xfce4-clipman"
   spawn "nm-applet"
+  spawn "redshift-gtk -l 43.524195:-80.218171"
   spawn myTerminal
   spawn myTerminal
   spawn myBrowser

@@ -37,6 +37,7 @@
     gnumake
     gnupg
     xfce.xfce4_clipman_plugin
+    redshift
     # For xmonad
     ghc
     terminator
