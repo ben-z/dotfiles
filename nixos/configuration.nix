@@ -41,6 +41,8 @@
     wine
     dropbox
     unrar
+    unzip
+    linuxPackages_3_18.virtualbox
     # For xmonad
     ghc
     terminator
@@ -53,7 +55,11 @@
     gnome3.nautilus
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
+  virtualisation.virtualbox.host.enable = true;
 
   # List services that you want to enable:
 
