@@ -113,7 +113,7 @@ export PATH="$PATH:$HOME/Documents/swift/usr/bin"
 export PATH="$PATH:$HOME/.xmonad/audio/control"
 export PATH="$PATH:/usr/share/simplenote"
 
-export NVM_DIR="/home/ben/.nvm"
+export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="$PATH:$HOME/.xmonad/bin"
 export BASH_ENV="$BASH_ENV:$HOME/.bash_aliases"
