@@ -8,6 +8,6 @@ then
   . $HOME/.bashrc
 fi  
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
