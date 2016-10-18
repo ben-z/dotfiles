@@ -13,6 +13,13 @@ BASH_LOGOUT_PATH = ~/.bash_logout
 BASHRC_PATH = ~/.bashrc
 BASH_DOTFILES_PATH = bash
 
+# zsh
+ZSHRC_PATH = ~/.zshrc
+ZSH_UPDATE_PATH = ~/.zsh-update
+ZSH_ALIASES_PATH = ~/.zsh_aliases
+OH_MY_ZSH_PATH = ~/.oh-my-zsh
+ZSH_DOTFILES_PATH = zsh
+
 # xmonad
 DOT_XMONAD_PATH = ~/.xmonad
 DOT_STALONETRAYRC_PATH = ~/.stalonetrayrc
@@ -28,7 +35,7 @@ TERMINATOR_DOTFILES_PATH = terminator
 TERMINATOR_CONFIGURATION_PATH = ~/.config/terminator/config
 
 all: clean-backups update-submodules install-bash install-vim
-.PHONY: clean-backups update-submodules install-bash install-vim install-xmonad install-nixos install-terminator
+.PHONY: clean-backups update-submodules install-bash install-zsh install-vim install-xmonad install-nixos install-terminator
 
 update-submodules:
 	git submodule update --init
@@ -56,6 +63,26 @@ endif
 	ln -s $(DOTFILES)/$(BASH_DOTFILES_PATH)/$(notdir $(BASH_PROFILE_PATH)) $(BASH_PROFILE_PATH)
 	ln -s $(DOTFILES)/$(BASH_DOTFILES_PATH)/$(notdir $(BASH_LOGOUT_PATH)) $(BASH_LOGOUT_PATH)
 	ln -s $(DOTFILES)/$(BASH_DOTFILES_PATH)/$(notdir $(BASHRC_PATH)) $(BASHRC_PATH)
+
+install-zsh:
+# backup .zsh* if they already exist in ~
+ifneq ("$(wildcard $(ZSH_ALIASES_PATH))","")
+	mv $(ZSH_ALIASES_PATH) $(ZSH_ALIASES_PATH)$(BAK_SUFFIX)
+endif
+ifneq ("$(wildcard $(ZSHRC_PATH))","")
+	mv $(ZSHRC_PATH) $(ZSHRC_PATH)$(BAK_SUFFIX)
+endif
+ifneq ("$(wildcard $(ZSH_UPDATE_PATH))","")
+	mv $(ZSH_UPDATE_PATH) $(ZSH_UPDATE_PATH)$(BAK_SUFFIX)
+endif
+ifneq ("$(wildcard $(OH_MY_ZSH_PATH))","")
+	mv $(OH_MY_ZSH_PATH) $(OH_MY_ZSH_PATH)$(BAK_SUFFIX)
+endif
+
+	ln -s $(DOTFILES)/$(ZSH_DOTFILES_PATH)/$(notdir $(ZSH_ALIASES_PATH)) $(ZSH_ALIASES_PATH)
+	ln -s $(DOTFILES)/$(ZSH_DOTFILES_PATH)/$(notdir $(ZSHRC_PATH)) $(ZSHRC_PATH)
+	ln -s $(DOTFILES)/$(ZSH_DOTFILES_PATH)/$(notdir $(ZSH_UPDATE_PATH)) $(ZSH_UPDATE_PATH)
+	ln -s $(DOTFILES)/$(ZSH_DOTFILES_PATH)/$(notdir $(OH_MY_ZSH_PATH)) $(OH_MY_ZSH_PATH)
 
 install-vim:
 # backup .vim and .vimrc if they already exist in ~
