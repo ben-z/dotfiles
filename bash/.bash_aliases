@@ -1,21 +1,6 @@
 alias lsp='lsof -i -n -P | grep LISTEN' # List listening ports by current user
 alias lspa='sudo lsof -i -n -P | grep LISTEN' # List listening ports by all users
-alias packants='cd ~/Documents/packants'
-alias packantsapi='cd ~/Documents/packants/API'
-alias packantslanding='cd ~/Documents/packants/landing-pages'
-alias packantsportal='cd ~/Documents/packants/portal'
-alias packantsportalui='cd ~/Documents/packants/portal-ui'
-alias packantsauthmicroservice='cd ~/Documents/packants/auth-microservice'
-alias packantsusermicroservice='cd ~/Documents/packants/user-microservice'
-alias packantsmicroservicestemplate='cd ~/Documents/packants/microservices-template'
-alias l="ls -la"
-alias dotfiles="cd ~/Documents/dotfiles"
+alias dotfiles="cd ~/Projects/dotfiles"
 alias treenodoc="tree -I 'node_modules|jsdoc|docs'"
-alias cv="cd ~/Documents/CV"
-alias doc="cd ~/Documents"
-alias 500px="cd ~/Documents/500px && docker-init"
-alias prime="cd ~/Documents/prime && export MACHINE_ENV=localhost"
-alias plat="cd ~/Documents/platform && docker-init"
-alias wbff="cd ~/Documents/web-bff-service && docker-init"
-alias vimgo="vim -u ~/.vimrc.go"
-alias vi="vim"
+alias cv="cd ~/Projects/CV"
+alias doc="cd ~/Projects"
