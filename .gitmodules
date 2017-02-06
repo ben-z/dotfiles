@@ -37,3 +37,9 @@
 [submodule "vim/.vim/bundle/vim-javascript"]
 	path = vim/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/.vim/bundle/CoVim"]
+	path = vim/.vim/bundle/CoVim
+	url = git://github.com/FredKSchott/CoVim.git
+[submodule "vim/.vim/bundle/ale"]
+	path = vim/.vim/bundle/ale
+	url = https://github.com/w0rp/ale.git
