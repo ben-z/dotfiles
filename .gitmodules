@@ -43,3 +43,6 @@
 [submodule "vim/.vim/bundle/ale"]
 	path = vim/.vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "vim/.vim/bundle/vim-nix"]
+	path = vim/.vim/bundle/vim-nix
+	url = https://github.com/LnL7/vim-nix.git
