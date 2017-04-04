@@ -2,7 +2,21 @@
 
 let
   my_plugins = import ./plugins.nix { inherit (pkgs) vimUtils fetchFromGitHub; }; 
-in with pkgs; vim_configurable.customize {
+  configurable_nix_path = "${<nixpkgs>}/pkgs/applications/editors/vim/configurable.nix";
+  my_vim_configurable = with pkgs; vimUtils.makeCustomizable (callPackage configurable_nix_path {
+    inherit (darwin.apple_sdk.frameworks) CoreServices Cocoa Foundation CoreData;
+    inherit (darwin) libobjc cf-private;
+
+    features = "huge"; # one of  tiny, small, normal, big or huge
+    lua = pkgs.lua5_1;
+    gui = config.vim.gui or "auto";
+    python = python3;
+
+    # optional features by flags
+    flags = [ "python" "X11" ];
+  });
+
+in with pkgs; my_vim_configurable.customize {
   name = "vim";
   vimrcConfig = {
     customRC = ''
