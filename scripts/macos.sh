@@ -28,7 +28,7 @@ if [ -e $HOME/.nixpkgs ]; then
   debug "Backing up ~/.nixpkgs"
   mv $HOME/.nixpkgs $BACKUP_FOLDER/.nixpkgs 
 fi
-inf "Linking up ~/.nixpkgs"
+inf "Linking ~/.nixpkgs -> $(pwd)/nixpkgs"
 ln -s $(pwd)/nixpkgs $HOME/.nixpkgs
 
 # Install essential pacakges defined in nixpkgs/config.nix
