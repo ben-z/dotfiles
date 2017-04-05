@@ -7,12 +7,11 @@
 
       paths = [
         gitAndTools.hub
-        silver-searcher
         my_vim
+        ripgrep
         zsh
         zsh-completions
         zsh-prezto
-        ripgrep
       ];
     };
   };
