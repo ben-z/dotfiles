@@ -12,6 +12,7 @@
         zsh
         zsh-completions
         zsh-prezto
+        nix-zsh-completions
       ];
     };
   };
