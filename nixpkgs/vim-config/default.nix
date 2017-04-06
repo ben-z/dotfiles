@@ -75,6 +75,7 @@ in with pkgs; my_vim_configurable.customize {
         "vim-vue"
         "elm-vim"
         "hexmode"
+        "vim-flow"
       ]; }
     ];
   };

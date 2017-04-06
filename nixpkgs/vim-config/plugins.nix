@@ -56,12 +56,23 @@
   };
 
   vim-solarized8 = vimUtils.buildVimPluginFrom2Nix {
-    name = "ale-2017-04-03";
+    name = "vim-solarized8-2017-04-03";
     src = fetchFromGitHub {
       owner = "lifepillar";
       repo = "vim-solarized8";
       rev = "0558a391977d2bee938a2d559f4571a5e8a25a1e";
       sha256 = "1sdfsph9xc7h0hm6mz8j8syl44flvrnzy8cikbwlxc6ihd48gx06";
+    };
+    dependencies = [];
+  };
+
+  vim-flow = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-flow-2017-04-05";
+    src = fetchFromGitHub {
+      owner = "flowtype";
+      repo = "vim-flow";
+      rev = "3bd879dd7060f13a78e9238669c2e1731e098607";
+      sha256 = "002nl02187b2lxaya0myd0scn586z9r7yjklz6gawrrpx17vi49f";
     };
     dependencies = [];
   };
