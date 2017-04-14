@@ -56,6 +56,8 @@ in with pkgs; my_vim_configurable.customize {
       nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
       let g:ctrlp_user_command = 'rg --files %s'
       let g:ctrlp_use_caching = 0
+
+      let g:NERDSpaceDelims = 1
     '';
 
     vam.knownPlugins = vimPlugins // my_plugins;
@@ -76,6 +78,8 @@ in with pkgs; my_vim_configurable.customize {
         "elm-vim"
         "hexmode"
         "vim-flow"
+        "vim-jsx"
+        "nerdcommenter"
       ]; }
     ];
   };

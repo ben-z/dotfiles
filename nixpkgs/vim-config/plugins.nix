@@ -76,4 +76,16 @@
     };
     dependencies = [];
   };
+
+  vim-jsx = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-jsx-2017-04-06";
+    src = fetchFromGitHub {
+      owner = "mxw";
+      repo = "vim-jsx";
+      rev = "eb656ed96435ccf985668ebd7bb6ceb34b736213";
+      sha256 = "1ydyifnfk5jfnyi4a1yc7g3b19aqi6ajddn12gjhi8v02z30vm65";
+    };
+    dependencies = [];
+  };
+
 }
