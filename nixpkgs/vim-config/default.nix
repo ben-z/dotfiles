@@ -20,19 +20,22 @@ in with pkgs; my_vim_configurable.customize {
   name = "vim";
   vimrcConfig = {
     customRC = ''
+      " Use Vim settings, rather than Vi settings (much better!).
+      " This must be first, because it changes other options as a side effect.
+      set nocompatible
+
       syntax on
       filetype on
       set expandtab
-      set tabstop=4
-      set softtabstop=0
-      set shiftwidth=4
+      set tabstop=2
+      set softtabstop=2
+      set shiftwidth=2
       set smarttab
       set autoindent
       set smartindent
       set smartcase
       set ignorecase
       set modeline
-      set nocompatible
       set encoding=utf-8
       set incsearch
       set hlsearch
@@ -51,13 +54,53 @@ in with pkgs; my_vim_configurable.customize {
         set mouse=a
       endif
 
+      set pastetoggle=<F2>
+      " Display a block cursor in normal mode and a line cursor in insert mode
+      " Source: https://code.google.com/archive/p/mintty/wikis/Tips.wiki
+      let &t_ti.="\e[1 q"
+      let &t_SI.="\e[5 q"
+      let &t_EI.="\e[1 q"
+      let &t_te.="\e[0 q"
+
+      " Prevent delay on <ESC><O> and some other combinations
+      " Source: https://vi.stackexchange.com/a/3262
+      set timeout timeoutlen=1000 ttimeoutlen=100
+
       set grepprg=rg\ --vimgrep
       " bind K to grep word under cursor
       nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
       let g:ctrlp_user_command = 'rg --files %s'
       let g:ctrlp_use_caching = 0
 
+      " Convenient command to see the difference between the current buffer and the
+      " file it was loaded from, thus the changes you made.
+      " Only define it when not defined already.
+      if !exists(":DiffOrig")
+        command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+            \ | wincmd p | diffthis
+      endif
+
+      " For all text files set 'textwidth' to 78 characters.
+      autocmd FileType text setlocal textwidth=78
+
+      " When editing a file, always jump to the last known cursor position.
+      " Don't do it when the position is invalid or when inside an event handler
+      " (happens when dropping a file on gvim).
+      " Also don't do it when the mark is in the first line, that is the default
+      " position when opening a file.
+      autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+
       let g:NERDSpaceDelims = 1
+
+      autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --trailing-comma\ all
+
+      " Use formatprg when available
+      let g:neoformat_try_formatprg = 1
+
+      autocmd BufWritePre *.js Neoformat
     '';
 
     vam.knownPlugins = vimPlugins // my_plugins;
@@ -80,6 +123,7 @@ in with pkgs; my_vim_configurable.customize {
         "vim-flow"
         "vim-jsx"
         "nerdcommenter"
+        "neoformat"
       ]; }
     ];
   };
