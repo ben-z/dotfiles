@@ -120,4 +120,15 @@
     };
     dependencies = [];
   };
+
+  tern_for_vim = vimUtils.buildVimPluginFrom2Nix {
+    name = "tern_for_vim-2017-06-02";
+    src = fetchFromGitHub {
+      owner = "ben-z";
+      repo = "tern_for_vim";
+      rev = "5e27473fcf381d8a72638d3010315788ac4ae836";
+      sha256 = "1bkwg3jd5r4jl4ibm4x23lwanlpqnzr9irrf48ksp2c732vaqmgf";
+    };
+    dependencies = [];
+  };
 }
