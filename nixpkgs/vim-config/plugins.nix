@@ -88,4 +88,36 @@
     dependencies = [];
   };
 
+  javascript-libraries-syntax = vimUtils.buildVimPluginFrom2Nix {
+    name = "javascript-libraries-syntax-2017-05-14";
+    src = fetchFromGitHub {
+      owner = "othree";
+      repo = "javascript-libraries-syntax.vim";
+      rev = "6b16bf54cc89a6f81a6126c0df73a3407df491bf";
+      sha256 = "1n6z805bgp59y0wxjxspw6w6ahbfm9i7w3bq4bm674radfff7738";
+    };
+    dependencies = [];
+  };
+
+  vim-racket = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-racket-2017-05-26";
+    src = fetchFromGitHub {
+      owner = "wlangstroth";
+      repo = "vim-racket";
+      rev = "f76fde9afbc008b7468c9ea026cbe3840af5f5ef";
+      sha256 = "1cs6kyw9565mdpyifvnp6lw9n0i31ahfqn48pg1n5h49bvn9667x";
+    };
+    dependencies = [];
+  };
+
+  vim-jsx-pretty = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-jsx-pretty-2017-06-02";
+    src = fetchFromGitHub {
+      owner = "MaxMEllon";
+      repo = "vim-jsx-pretty";
+      rev = "a90b5f9c5d944709431d976e6576092041129bb5";
+      sha256 = "181ss7wvpvmxw993hcd7fba0yqs1fdk50vlkxs9s8a11z4ra5086";
+    };
+    dependencies = [];
+  };
 }

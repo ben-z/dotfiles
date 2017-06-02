@@ -11,9 +11,6 @@ let
     lua = pkgs.lua5_1;
     gui = config.vim.gui or "auto";
     python = python3;
-
-    # optional features by flags
-    flags = [ "python" "X11" ];
   });
 
 in with pkgs; my_vim_configurable.customize {
@@ -100,6 +97,29 @@ in with pkgs; my_vim_configurable.customize {
       " Use formatprg when available
       let g:neoformat_try_formatprg = 1
 
+      let g:used_javascript_libs = 'react'
+
+      let g:vimtex_compiler_latexmk = {
+      \ 'callback' : 0,
+      \ }
+
+      if !exists('g:ycm_semantic_triggers')
+        let g:ycm_semantic_triggers = {}
+      endif
+      let g:ycm_semantic_triggers.tex = [
+      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      \ 're!\\hyperref\[[^]]*',
+      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\(include(only)?|input){[^}]*',
+      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\[A-Za-z]*',
+      \ ]
+
       autocmd BufWritePre *.js Neoformat
     '';
 
@@ -121,9 +141,13 @@ in with pkgs; my_vim_configurable.customize {
         "elm-vim"
         "hexmode"
         "vim-flow"
-        "vim-jsx"
         "nerdcommenter"
         "neoformat"
+        "javascript-libraries-syntax"
+        "vimtex"
+        "vim-racket"
+        "vim-javascript"
+        "vim-jsx-pretty"
       ]; }
     ];
   };
