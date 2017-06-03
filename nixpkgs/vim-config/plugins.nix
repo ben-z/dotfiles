@@ -1,4 +1,4 @@
-{ vimUtils, fetchFromGitHub }:
+{ vimUtils, fetchFromGitHub, stdenv, python, ycmd, fetchgit }:
 {
   elm-vim = vimUtils.buildVimPluginFrom2Nix {
     name = "elm.vim-2017-01-13";
@@ -130,5 +130,30 @@
       sha256 = "1bkwg3jd5r4jl4ibm4x23lwanlpqnzr9irrf48ksp2c732vaqmgf";
     };
     dependencies = [];
+  };
+
+  youcompleteme = vimUtils.buildVimPluginFrom2Nix { # created by nix#NixDerivation
+    name = "youcompleteme-2017-05-19";
+    src = fetchgit {
+      url = "https://github.com/valloric/youcompleteme";
+      rev = "6132f0bc50c44b15bd90c26642494da1ab20131f";
+      sha256 = "1bwg71jqsiz5wd9m9nnflyrnnfyzni41czllyi3qg1hq3iipaq75";
+    };
+    dependencies = [];
+    buildPhase = ''
+      substituteInPlace plugin/youcompleteme.vim \
+        --replace "'ycm_path_to_python_interpreter', '''" \
+                  "'ycm_path_to_python_interpreter', '${python}/bin/python'"
+      rm -r third_party/ycmd
+      ln -s ${ycmd}/lib/ycmd third_party
+    '';
+
+    meta = {
+      description = "Fastest non utf-8 aware word and C completion engine for Vim";
+      homepage = http://github.com/Valloric/YouCompleteMe;
+      license = stdenv.lib.licenses.gpl3;
+      maintainers = with stdenv.lib.maintainers; [marcweber jagajaga];
+      platforms = stdenv.lib.platforms.unix;
+    };
   };
 }

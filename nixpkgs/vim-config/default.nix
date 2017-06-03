@@ -1,7 +1,12 @@
 { pkgs }:
 
 let
-  my_plugins = import ./plugins.nix { inherit (pkgs) vimUtils fetchFromGitHub; }; 
+  # ycmd_with_tern = pkgs.callPackage "${<nixpkgs>}/pkgs/development/tools/misc/ycmd/default.nix" {
+    # inherit (pkgs) stdenv lib fetchgit cmake llvmPackages boost python nodejs nodePackages;
+
+    # ternCompleter = true;
+  # };
+  my_plugins = import ./plugins.nix { inherit (pkgs) vimUtils fetchFromGitHub fetchgit stdenv python ycmd; }; 
   configurable_nix_path = "${<nixpkgs>}/pkgs/applications/editors/vim/configurable.nix";
   my_vim_configurable = with pkgs; vimUtils.makeCustomizable (callPackage configurable_nix_path {
     inherit (darwin.apple_sdk.frameworks) CoreServices Cocoa Foundation CoreData;
