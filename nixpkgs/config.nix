@@ -13,7 +13,7 @@
         zsh-completions
         zsh-prezto
         nix-zsh-completions
-        nodejs
+        nodejs-8_x
         nodePackages.prettier
       ];
     };

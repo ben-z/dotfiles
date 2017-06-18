@@ -152,7 +152,6 @@ in with pkgs; my_vim_configurable.customize {
         "vimtex"
         "vim-racket"
         "vim-javascript"
-        "vim-jsx-pretty"
         "tern_for_vim"
       ]; }
     ];
