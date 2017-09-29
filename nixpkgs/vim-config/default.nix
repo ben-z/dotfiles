@@ -7,7 +7,7 @@ let
     # ternCompleter = true;
   # };
   my_plugins = import ./plugins.nix { inherit (pkgs) vimUtils fetchFromGitHub fetchgit stdenv python ycmd; }; 
-  configurable_nix_path = "${<nixpkgs>}/pkgs/applications/editors/vim/configurable.nix";
+  configurable_nix_path = <nixpkgs/pkgs/applications/editors/vim/configurable.nix>;
   my_vim_configurable = with pkgs; vimUtils.makeCustomizable (callPackage configurable_nix_path {
     inherit (darwin.apple_sdk.frameworks) CoreServices Cocoa Foundation CoreData;
     inherit (darwin) libobjc cf-private;
@@ -142,8 +142,6 @@ in with pkgs; my_vim_configurable.customize {
         "vim-solarized8"
         "vim-go"
         "vim-javascript"
-        "vim-vue"
-        "elm-vim"
         "hexmode"
         "vim-flow"
         "nerdcommenter"
@@ -152,7 +150,7 @@ in with pkgs; my_vim_configurable.customize {
         "vimtex"
         "vim-racket"
         "vim-javascript"
-        "tern_for_vim"
+        # "tern_for_vim"
       ]; }
     ];
   };
