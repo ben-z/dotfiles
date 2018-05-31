@@ -30,8 +30,8 @@ let
         'completion' \
         'prompt' \
         #'fasd' \
-        'ssh' \
-        'screen' \
+        #'ssh' \
+        #'screen' \
       # Set the key mapping style to 'emacs' or 'vi'.
       zstyle ':prezto:module:editor' key-bindings 'vi'
       # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
@@ -41,7 +41,7 @@ let
       # Auto set to 'off' on dumb terminals.
       zstyle ':prezto:module:prompt' theme 'sorin'
       # Set the SSH identities to load into the agent.
-      zstyle ':prezto:module:ssh:load' identities 'id_rsa'
+      #zstyle ':prezto:module:ssh:load' identities 'id_rsa'
       # Auto set the tab and window titles.
       zstyle ':prezto:module:terminal' auto-title 'yes'
       # Set the window title format.
