@@ -13,6 +13,7 @@
       pkgs.gnupg
       pkgs.ripgrep
       pkgs.neovim
+      pkgs.nodejs-9_x
     ];
 
   # Auto upgrade nix package and the daemon service.

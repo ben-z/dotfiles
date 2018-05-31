@@ -29,7 +29,7 @@ let
         'git' \
         'completion' \
         'prompt' \
-        #'fasd' \
+        'fasd' \
         #'ssh' \
         #'screen' \
       # Set the key mapping style to 'emacs' or 'vi'.
