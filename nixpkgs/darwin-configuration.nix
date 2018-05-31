@@ -1,12 +1,19 @@
 { config, pkgs, ... }:
 
-{
+let
+  zsh_config = import ./zsh {
+    inherit (pkgs) writeText zsh-prezto neovim less;
+  };
+
+in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [ pkgs.nix-repl
       pkgs.fzf
       pkgs.ripgrep
+      pkgs.zsh-prezto
+      pkgs.neovim
     ];
 
   # Auto upgrade nix package and the daemon service.
@@ -36,4 +43,6 @@
     # environment variables
     variables = {};
   };
+
+  environment.etc = zsh_config.environment_etc;
 }
