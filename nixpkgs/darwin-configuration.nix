@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./my_zsh
+    ./my_prezto
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -32,6 +32,14 @@
 
   # Shell
   programs.bash.enable = false;
+  programs.my_prezto = {
+    enable = true;
+    enableFzfCompletion = true;
+    enableFzfGit = true;
+    enableFzfHistory = true;
+    enableSyntaxHighlighting = true;
 
-  programs.my_zsh.enable = true;
+    # environment variables
+    variables = {};
+  };
 }

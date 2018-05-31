@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.programs.my_zsh;
+  cfg = config.programs.my_prezto;
 
   zshVariables =
     mapAttrsToList (n: v: ''${n}="${v}"'') cfg.variables;
@@ -54,77 +54,44 @@ let
       export PAGER='${pkgs.less}/bin/less -R'
       export KEYTIMEOUT=1
     '';
-
-  zshenv = pkgs.writeText "zshenv"
+  zshenv = pkgs.writeText "zshenv-local"
     ''
       # DO NOT EDIT -- this file has been generated automatically.
       # This file is read for all shells.
 
       # Only execute this file once per shell.
-      if [ -n "$__ETC_ZSHENV_SOURCED" ]; then return; fi
-      __ETC_ZSHENV_SOURCED=1
-
-      # Don't execute this file when running in a pure nix-shell.
-      if test -n "$IN_NIX_SHELL"; then return; fi
-
-      export PATH=${config.environment.systemPath}
-      ${config.system.build.setEnvironment.text}
-      ${cfg.shellInit}
+      if [ -n "$__ETC_ZSHENV_LOCAL_SOURCED" ]; then return; fi
+      __ETC_ZSHENV_LOCAL_SOURCED=1
 
       source ${pkgs.zsh-prezto}/runcoms/zshenv
 
-      # Read system-wide modifications.
-      if test -f /etc/zshenv.local; then
-        source /etc/zshenv.local
-      fi
+      ${cfg.shellInit}
     '';
-  zprofile = pkgs.writeText "zprofile"
+  zprofile = pkgs.writeText "zprofile-local"
     ''
       # DO NOT EDIT -- this file has been generated automatically.
       # This file is read for login shells.
 
       # Only execute this file once per shell.
-      if [ -n "$__ETC_ZPROFILE_SOURCED" ]; then return; fi
-      __ETC_ZPROFILE_SOURCED=1
-
-      ${concatStringsSep "\n" zshVariables}
-      ${config.system.build.setAliases.text}
-      ${cfg.loginShellInit}
+      if [ -n "$__ETC_ZPROFILE_LOCAL_SOURCED" ]; then return; fi
+      __ETC_ZPROFILE_LOCAL_SOURCED=1
 
       source ${pkgs.zsh-prezto}/runcoms/zprofile
 
-      # Read system-wide modifications.
-      if test -f /etc/zprofile.local; then
-        source /etc/zprofile.local
-      fi
+      ${cfg.loginShellInit}
     '';
-  zshrc = pkgs.writeText "zshrc"
+  zshrc = pkgs.writeText "zshrc-local"
     ''
       # DO NOT EDIT -- this file has been generated automatically.
       # This file is read for interactive shells.
 
       # Only execute this file once per shell.
-      if [ -n "$__ETC_ZSHRC_SOURCED" ]; then return; fi
-      __ETC_ZSHRC_SOURCED=1
-
-      # history defaults
-      SAVEHIST=2000
-      HISTSIZE=2000
-      HISTFILE=$HOME/.zsh_history
-
-      setopt HIST_IGNORE_DUPS SHARE_HISTORY HIST_FCNTL_LOCK
-
-      bindkey -e
-
-      ${config.environment.interactiveShellInit}
-      ${cfg.interactiveShellInit}
-
-      # Tell zsh how to find installed completions
-      for p in ''${(z)NIX_PROFILES}; do
-        fpath+=($p/share/zsh/site-functions $p/share/zsh/$ZSH_VERSION/functions)
-      done
+      if [ -n "$__ETC_ZSHRC_LOCAL_SOURCED" ]; then return; fi
+      __ETC_ZSHRC_LOCAL_SOURCED=1
 
       ${cfg.promptInit}
+
+      source ${pkgs.zsh-prezto}/runcoms/zshrc
 
       ${optionalString cfg.enableCompletion "autoload -U compinit && compinit"}
       ${optionalString cfg.enableBashCompletion "autoload -U bashcompinit && bashcompinit"}
@@ -136,23 +103,16 @@ let
       ${optionalString cfg.enableFzfCompletion "source ${fzfCompletion}"}
       ${optionalString cfg.enableFzfGit "source ${fzfGit}"}
       ${optionalString cfg.enableFzfHistory "source ${fzfHistory}"}
-
-      source ${pkgs.zsh-prezto}/runcoms/zshrc
-
-      # Read system-wide modifications.
-      if test -f /etc/zshrc.local; then
-        source /etc/zshrc.local
-      fi
     '';
 in {
   options = {
-    programs.my_zsh.enable = mkOption {
+    programs.my_prezto.enable = mkOption {
      type = types.bool;
      default = false;
      description = "Whether to configure zsh as an interactive shell.";
     };
 
-    programs.my_zsh.variables = mkOption {
+    programs.my_prezto.variables = mkOption {
       type = types.attrsOf (types.either types.str (types.listOf types.str));
       default = {};
       description = ''
@@ -165,61 +125,61 @@ in {
       apply = mapAttrs (n: v: if isList v then concatStringsSep ":" v else v);
     };
 
-    programs.my_zsh.shellInit = mkOption {
+    programs.my_prezto.shellInit = mkOption {
       type = types.lines;
       default = "";
       description = "Shell script code called during zsh shell initialisation.";
     };
 
-    programs.my_zsh.loginShellInit = mkOption {
+    programs.my_prezto.loginShellInit = mkOption {
       type = types.lines;
       default = "";
       description = "Shell script code called during zsh login shell initialisation.";
     };
 
-    programs.my_zsh.interactiveShellInit = mkOption {
+    programs.my_prezto.interactiveShellInit = mkOption {
       type = types.lines;
       default = "";
       description = "Shell script code called during interactive zsh shell initialisation.";
     };
 
-    programs.my_zsh.promptInit = mkOption {
+    programs.my_prezto.promptInit = mkOption {
       type = types.lines;
       default = "autoload -U promptinit && promptinit && prompt walters";
       description = "Shell script code used to initialise the zsh prompt.";
     };
 
-    programs.my_zsh.enableCompletion = mkOption {
+    programs.my_prezto.enableCompletion = mkOption {
       type = types.bool;
       default = true;
       description = "Enable zsh completion for all interactive zsh shells.";
     };
 
-    programs.my_zsh.enableBashCompletion = mkOption {
+    programs.my_prezto.enableBashCompletion = mkOption {
       type = types.bool;
       default = true;
       description = "Enable bash completion for all interactive zsh shells.";
     };
 
-    programs.my_zsh.enableFzfCompletion = mkOption {
+    programs.my_prezto.enableFzfCompletion = mkOption {
       type = types.bool;
       default = false;
       description = "Enable fzf completion.";
     };
 
-    programs.my_zsh.enableFzfGit = mkOption {
+    programs.my_prezto.enableFzfGit = mkOption {
       type = types.bool;
       default = false;
       description = "Enable fzf keybindings for C-g git browsing.";
     };
 
-    programs.my_zsh.enableFzfHistory = mkOption {
+    programs.my_prezto.enableFzfHistory = mkOption {
       type = types.bool;
       default = false;
       description = "Enable fzf keybinding for Ctrl-r history search.";
     };
 
-    programs.my_zsh.enableSyntaxHighlighting = mkOption {
+    programs.my_prezto.enableSyntaxHighlighting = mkOption {
       type = types.bool;
       default = false;
       description = "Enable zsh-syntax-highlighting.";
@@ -229,9 +189,14 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages =
       [
-        pkgs.zsh
         pkgs.zsh-prezto
       ];
+
+    # Pass on 2 variables to zsh
+    programs.zsh = {
+      enable = cfg.enable;
+      variables = cfg.variables;
+    };
 
     environment.etc =
       [ { source = "${pkgs.zsh-prezto}/runcoms/zlogin";
@@ -244,13 +209,13 @@ in {
           target = "zpreztorc";
         }
         { source = zprofile;
-          target = "zprofile";
+          target = "zprofile.local";
         }
         { source = zshenv;
-          target = "zshenv";
+          target = "zshenv.local";
         }
         { source = zshrc;
-          target = "zshrc";
+          target = "zshrc.local";
         }
     ];
   };
