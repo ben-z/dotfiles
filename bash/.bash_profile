@@ -9,4 +9,4 @@ if [ "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-. ~/.nix-profile/etc/profile.d/nix.sh
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

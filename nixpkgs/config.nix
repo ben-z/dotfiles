@@ -15,7 +15,6 @@
         nix-zsh-completions
         jq # Commandline json processor
         nodejs-8_x
-        nodePackages.prettier
       ];
     };
   };
