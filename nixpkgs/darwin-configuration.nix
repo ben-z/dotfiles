@@ -14,7 +14,7 @@
       pkgs.ripgrep
       pkgs.neovim
       pkgs.nodejs-9_x
-      pkgs.go
+      pkgs.gitAndTools.hub
     ];
 
   # Auto upgrade nix package and the daemon service.
