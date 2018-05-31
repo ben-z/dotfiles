@@ -1,18 +1,17 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-let
-  zsh_config = import ./zsh {
-    inherit (pkgs) writeText zsh-prezto neovim less;
-  };
+{
+  imports = [
+    ./my_zsh
+  ];
 
-in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [ pkgs.nix-repl
       pkgs.fzf
+      pkgs.gnupg
       pkgs.ripgrep
-      pkgs.zsh-prezto
       pkgs.neovim
     ];
 
@@ -33,16 +32,6 @@ in {
 
   # Shell
   programs.bash.enable = false;
-  programs.zsh = {
-    enable = true;
-    enableFzfCompletion = true;
-    enableFzfGit = true;
-    enableFzfHistory = true;
-    enableSyntaxHighlighting = true;
 
-    # environment variables
-    variables = {};
-  };
-
-  environment.etc = zsh_config.environment_etc;
+  programs.my_zsh.enable = true;
 }
