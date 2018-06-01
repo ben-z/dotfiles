@@ -62,4 +62,12 @@
       PATH = "$HOME/Projects/my_bin_files:$PATH";
     };
   };
+
+    programs.vim = {
+    enable = true;
+    enableSensible = true;
+    plugins = [{
+      names = ["commentary"];
+    }];
+  };
 }
