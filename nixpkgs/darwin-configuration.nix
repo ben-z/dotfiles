@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  myHunspell = pkgs.hunspellWithDicts [pkgs.hunspellDicts.en-ca];
+in
 {
   imports = [
     ./my_prezto
@@ -15,6 +18,8 @@
       pkgs.neovim
       pkgs.nodejs-9_x
       pkgs.gitAndTools.hub
+      pkgs.qemu
+      myHunspell
     ];
 
   # Auto upgrade nix package and the daemon service.
@@ -63,7 +68,7 @@
     };
   };
 
-    programs.vim = {
+  programs.vim = {
     enable = true;
     enableSensible = true;
     plugins = [{
