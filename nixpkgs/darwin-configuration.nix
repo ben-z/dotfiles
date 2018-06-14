@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  myHunspell = pkgs.hunspellWithDicts [pkgs.hunspellDicts.en-ca];
+  myHunspell = pkgs.hunspellWithDicts [pkgs.hunspellDicts.en-ca pkgs.hunspellDicts.en-us];
 in
 {
   imports = [
@@ -19,6 +19,7 @@ in
       pkgs.nodejs-9_x
       pkgs.gitAndTools.hub
       pkgs.qemu
+      pkgs.aws
       myHunspell
     ];
 
@@ -57,6 +58,7 @@ in
         alias z='fasd_cd -d'     # cd, same functionality as j in autojump
         alias zz='fasd_cd -d -i' # cd with interactive selection
         alias v='f -e vim' # quick opening files with vim
+        alias vi='vim'           # alias vi to vim
 
         # hub
         alias git=hub
