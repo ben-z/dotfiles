@@ -73,8 +73,24 @@ in
   programs.vim = {
     enable = true;
     enableSensible = true;
+    extraKnownPlugins = {
+      autoclose = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        name = "vim-autoclose-2018-06-16";
+        src = pkgs.fetchgit {
+          url = "git://github.com/spf13/vim-autoclose";
+          rev = "c098b4f45da6232e66c14898ff6b197f360a29cc";
+          sha256 = "0yxv44v2axbi2rw68xa5r2qaig8dskh9mhqrm13iqjpg33d5gnyc";
+        };
+        dependencies = [];
+      };
+    };
     plugins = [{
-      names = ["commentary"];
+      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion"];
     }];
+    vimConfig =
+      ''
+      " Turn off ycm load conf confirmation
+      let g:ycm_confirm_extra_conf = 0
+      '';
   };
 }
