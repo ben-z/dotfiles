@@ -85,7 +85,7 @@ in
       };
     };
     plugins = [{
-      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim"];
+      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename"];
     }];
     vimConfig =
       ''
