@@ -85,12 +85,14 @@ in
       };
     };
     plugins = [{
-      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion"];
+      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes"];
     }];
     vimConfig =
       ''
       " Turn off ycm load conf confirmation
       let g:ycm_confirm_extra_conf = 0
+      let g:airline_theme='solarized'
+      let g:airline_solarized_bg='dark'
       '';
   };
 }
