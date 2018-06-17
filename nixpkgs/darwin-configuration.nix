@@ -85,7 +85,7 @@ in
       };
     };
     plugins = [{
-      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes"];
+      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim"];
     }];
     vimConfig =
       ''
@@ -204,6 +204,12 @@ in
         " Make it so AutoCloseTag works for xml and xhtml files as well
         au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
         nmap <Leader>ac <Plug>ToggleAutoCloseMappings
+      " }
+
+      " Ack {
+        if executable('rg')
+          let g:ackprg = 'rg --vimgrep'
+        endif
       " }
       '';
   };
