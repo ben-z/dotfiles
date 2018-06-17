@@ -66,7 +66,7 @@ in
 
     # environment variables
     variables = {
-      PATH = "$HOME/Projects/my_bin_files:$PATH";
+      PATH = "$HOME/Projects/my_bin_files:$HOME/.npm/bin:$PATH";
     };
   };
 
@@ -96,6 +96,13 @@ in
 
       " Many options below are taken from https://github.com/spf13/spf13-vim/blob/3.0/.vimrc
 
+      " General {
+        filetype plugin indent on   " Automatically detect file types.
+        syntax on                   " Syntax highlighting
+        set mouse=a                 " Automatically enable mouse usage
+        set mousehide               " Hide the mouse cursor while typing
+      " }
+
       " Use system clipboard {
         if has('clipboard')
           if has('unnamedplus')  " When possible use + register for copy-paste
@@ -109,7 +116,6 @@ in
       " Allow for cursor beyond last character {
         set virtualedit=onemore
       " }
-
 
       " Restore cursor position {
         function! ResCur()
@@ -211,6 +217,21 @@ in
           let g:ackprg = 'rg --vimgrep'
         endif
       " }
+
+      " NerdTree {
+        map <C-e> <plug>NERDTreeTabsToggle<CR>
+        map <leader>e :NERDTreeFind<CR>
+        nmap <leader>nt :NERDTreeFind<CR>
+
+        let NERDTreeShowBookmarks=1
+        let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+        let NERDTreeChDirMode=0
+        let NERDTreeQuitOnOpen=1
+        let NERDTreeMouseMode=2
+        let NERDTreeShowHidden=1
+        let NERDTreeKeepTreeInNewTab=1
+        let g:nerdtree_tabs_open_on_gui_startup=0
+    " }
       '';
   };
 }
