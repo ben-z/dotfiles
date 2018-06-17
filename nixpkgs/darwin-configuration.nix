@@ -183,6 +183,9 @@ in
         " Change Working Directory to that of the current file
         cmap cwd lcd %:p:h
         cmap cd. lcd %:p:h
+
+        " Find merge conflict markers
+        map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
       " }
 
       " Fugitive {
@@ -232,6 +235,21 @@ in
         let NERDTreeKeepTreeInNewTab=1
         let g:nerdtree_tabs_open_on_gui_startup=0
     " }
+
+    " ctrlp {
+      let g:ctrlp_working_path_mode = 'ra'
+      nnoremap <silent> <D-t> :CtrlP<CR>
+      nnoremap <silent> <D-r> :CtrlPMRU<CR>
+
+      " enable cross-session caching
+      let g:ctrlp_clear_cache_on_exit = 0
+
+      let g:ctrlp_show_hidden = 0
+
+      let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+    "}
       '';
   };
 }
