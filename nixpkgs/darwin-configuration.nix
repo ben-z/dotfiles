@@ -17,10 +17,10 @@ in
       pkgs.ripgrep
       pkgs.neovim
       pkgs.nodejs-9_x
-      pkgs.gitAndTools.hub
       pkgs.qemu
       pkgs.aws
       pkgs.gdb
+      pkgs.git
       myHunspell
     ];
 
@@ -60,9 +60,6 @@ in
         alias zz='fasd_cd -d -i' # cd with interactive selection
         alias v='f -e vim' # quick opening files with vim
         alias vi='vim'           # alias vi to vim
-
-        # hub
-        alias git=hub
       '';
 
     # environment variables
