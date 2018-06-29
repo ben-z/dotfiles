@@ -20,6 +20,7 @@ in
       pkgs.gitAndTools.hub
       pkgs.qemu
       pkgs.aws
+      pkgs.gdb
       myHunspell
     ];
 
@@ -83,9 +84,23 @@ in
         };
         dependencies = [];
       };
+      seoul256-theme = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        name = "vim-seoul256-theme-2018-06-19";
+        src = pkgs.fetchgit {
+          url = "git://github.com/junegunn/seoul256.vim";
+          rev = "1475b7610663c68aa90b6e565997c8792ce0d222";
+          sha256 = "03gqw14f5cirivcg1p06g500ns066yv5rd0z3zikvn4ql7n278dk";
+        };
+        dependencies = [];
+      };
     };
     plugins = [{
-      names = ["commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename"];
+      names = [
+        # These are pretty useful
+        "commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename"
+        # Still experimenting with these
+        "limelight-vim" "seoul256-theme" "goyo-vim"
+      ];
     }];
     vimConfig =
       ''
@@ -222,7 +237,6 @@ in
       " }
 
       " NerdTree {
-        map <C-e> <plug>NERDTreeTabsToggle<CR>
         map <leader>e :NERDTreeFind<CR>
         nmap <leader>nt :NERDTreeFind<CR>
 
@@ -249,6 +263,12 @@ in
       let g:ctrlp_custom_ignore = {
         \ 'dir':  '\.git$\|\.hg$\|\.svn$',
         \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+    "}
+
+    " limelight {
+      " From https://github.com/junegunn/limelight.vim/issues/27#issuecomment-160692583
+      let g:limelight_conceal_ctermfg = 245  " Solarized Base1
+      let g:limelight_conceal_guifg = '#8a8a8a'  " Solarized Base1
     "}
       '';
   };
