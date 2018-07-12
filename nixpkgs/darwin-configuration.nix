@@ -21,8 +21,12 @@ in
       pkgs.aws
       pkgs.gdb
       pkgs.git
+      pkgs.fswatch
+      pkgs.pkgconfig
+      pkgs.gettext
       myHunspell
     ];
+
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -90,11 +94,20 @@ in
         };
         dependencies = [];
       };
+      yajs-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        name = "yajs-vim-2018-07-09";
+        src = pkgs.fetchgit {
+          url = "git://github.com/othree/yajs.vim";
+          rev = "9c724db6689062fe803931add5d1c0c6d6c79411";
+          sha256 = "0ymyzkg1a9pfrcgazq3b0w4rry88lkwg5nar02daafgi2jh274an";
+        };
+        dependencies = [];
+      };
     };
     plugins = [{
       names = [
         # These are pretty useful
-        "commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename"
+        "commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename" "yajs-vim"
         # Still experimenting with these
         "limelight-vim" "seoul256-theme" "goyo-vim"
       ];
@@ -269,4 +282,13 @@ in
     "}
       '';
   };
+
+  # programs.tmux = {
+  #   enable = true;
+  #   enableSensible = true;
+  #   enableMouse = true;
+  #   enableFzf = true;
+  #   enableVim = true;
+  #   iTerm2 = true;
+  # };
 }
