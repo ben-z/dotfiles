@@ -24,9 +24,10 @@ in
       pkgs.fswatch
       pkgs.pkgconfig
       pkgs.gettext
+      pkgs.gitAndTools.bfg-repo-cleaner
+      pkgs.wget
       myHunspell
     ];
-
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
