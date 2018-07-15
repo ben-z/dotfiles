@@ -292,4 +292,6 @@ in
   #   enableVim = true;
   #   iTerm2 = true;
   # };
+
+  programs.nix-index.enable = true;
 }
