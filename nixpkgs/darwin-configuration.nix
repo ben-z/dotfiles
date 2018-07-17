@@ -16,7 +16,7 @@ in
       pkgs.gnupg
       pkgs.ripgrep
       pkgs.neovim
-      pkgs.nodejs-9_x
+      pkgs.nodejs-10_x
       pkgs.qemu
       pkgs.aws
       pkgs.gdb
@@ -284,14 +284,15 @@ in
       '';
   };
 
-  # programs.tmux = {
-  #   enable = true;
-  #   enableSensible = true;
-  #   enableMouse = true;
-  #   enableFzf = true;
-  #   enableVim = true;
-  #   iTerm2 = true;
-  # };
+  programs.tmux = {
+    enable = true;
+    enableSensible = true;
+    enableMouse = true;
+    enableFzf = true;
+    enableVim = true;
+    iTerm2 = true;
+    aggressiveResize = false;
+  };
 
   programs.nix-index.enable = true;
 }
