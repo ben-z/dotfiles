@@ -17,6 +17,7 @@
 #   5.7 Chrome
 #   5.8 Spark
 #   5.9 Things
+#   5.10 f.lux
 # 6. change Screenshot folder location `defaults write com.apple.screencapture [location]`
 
 
