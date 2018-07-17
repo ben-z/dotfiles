@@ -66,6 +66,7 @@ in
         alias zz='fasd_cd -d -i' # cd with interactive selection
         alias v='f -e vim' # quick opening files with vim
         alias vi='vim'           # alias vi to vim
+        alias drsl='NIX_PATH=darwin=$HOME/Projects/nix-darwin:darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$NIX_PATH darwin-rebuild switch' # switch with local repo
       '';
 
     # environment variables
