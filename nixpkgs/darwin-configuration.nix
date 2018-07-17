@@ -27,6 +27,8 @@ in
       pkgs.gitAndTools.bfg-repo-cleaner
       pkgs.wget
       pkgs.docker
+      pkgs.docker-machine
+      pkgs.docker-machine-xhyve
       myHunspell
     ];
 
