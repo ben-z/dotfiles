@@ -26,6 +26,7 @@ in
       pkgs.gettext
       pkgs.gitAndTools.bfg-repo-cleaner
       pkgs.wget
+      pkgs.docker
       myHunspell
     ];
 
