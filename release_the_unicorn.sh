@@ -15,6 +15,7 @@
 #   5.6 1Password
 #   5.7 Hammerspoon - configuration in this repo
 #   5.7 Chrome
+# 6. change Screenshot folder location `defaults write com.apple.screencapture [location]`
 
 
 if ! [ -x "$(command -v nix-env)" ]; then
