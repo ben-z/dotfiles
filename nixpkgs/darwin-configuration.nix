@@ -280,6 +280,12 @@ in
       let g:ctrlp_custom_ignore = {
         \ 'dir':  '\.git$\|\.hg$\|\.svn$',
         \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+      " https://news.ycombinator.com/item?id=4470283
+      let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
+
+      " Disable file limit
+      let g:ctrlp_max_files = 0
     "}
 
     " limelight {
