@@ -29,6 +29,8 @@ in
       pkgs.docker
       pkgs.docker-machine
       pkgs.docker-machine-xhyve
+      pkgs.cdecl # Explains c declarations (cdecl explain "const struct S** s")
+      pkgs.texlive.combined.scheme-full
       myHunspell
     ];
 
