@@ -114,7 +114,7 @@ in
     plugins = [{
       names = [
         # These are pretty useful
-        "commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename" "yajs-vim"
+        "commentary" "undotree" "nerdtree" "nerdtree-git-plugin" "ctrlp" "youcompleteme" "autoclose" "airline" "easymotion" "vim-airline-themes" "ack-vim" "Rename" "yajs-vim" "vimtex"
         # Still experimenting with these
         "limelight-vim" "seoul256-theme" "goyo-vim"
       ];
