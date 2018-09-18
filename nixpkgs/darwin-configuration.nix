@@ -33,6 +33,8 @@ in
       pkgs.texlive.combined.scheme-full
       pkgs.emacs
       myHunspell
+      pkgs.dos2unix
+      pkgs.tmux
     ];
 
   # Auto upgrade nix package and the daemon service.
@@ -49,6 +51,9 @@ in
   nix.buildCores = 4;
 
   system.defaults.dock.orientation = "right";
+
+  system.keyboard.enableKeyMapping = true;
+  system.keyboard.remapCapsLockToEscape = true;
 
   # Shell
   programs.bash.enable = false;
@@ -295,16 +300,6 @@ in
       let g:limelight_conceal_guifg = '#8a8a8a'  " Solarized Base1
     "}
       '';
-  };
-
-  programs.tmux = {
-    enable = true;
-    enableSensible = true;
-    enableMouse = true;
-    enableFzf = true;
-    enableVim = true;
-    iTerm2 = true;
-    aggressiveResize = false;
   };
 
   programs.nix-index.enable = true;
