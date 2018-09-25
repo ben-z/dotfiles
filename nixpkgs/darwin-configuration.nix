@@ -71,6 +71,8 @@ in
   programs.bash.enable = false;
   programs.my_prezto = {
     enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
     enableFzfCompletion = true;
     enableFzfGit = true;
     enableFzfHistory = true;

@@ -98,7 +98,16 @@ let
 
       source ${pkgs.zsh-prezto}/runcoms/zshrc
 
-      ${optionalString cfg.enableCompletion "autoload -U compinit && compinit"}
+      ${optionalString cfg.enableCompletion
+        ''
+          autoload -Uz compinit
+
+          for dump in ~/.zcompdump(N.mh+24); do
+            compinit
+          done
+
+          compinit -C
+        ''}
       ${optionalString cfg.enableBashCompletion "autoload -U bashcompinit && bashcompinit"}
 
       ${optionalString cfg.enableSyntaxHighlighting
