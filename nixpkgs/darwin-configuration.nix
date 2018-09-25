@@ -11,8 +11,7 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-    [ pkgs.nix-repl
-      pkgs.fzf
+    [ pkgs.fzf
       pkgs.gnupg
       pkgs.ripgrep
       pkgs.neovim
@@ -30,12 +29,20 @@ in
       pkgs.docker-machine
       pkgs.docker-machine-xhyve
       pkgs.cdecl # Explains c declarations (cdecl explain "const struct S** s")
-      pkgs.texlive.combined.scheme-full
+      #pkgs.texlive.combined.scheme-full
       pkgs.emacs
       myHunspell
       pkgs.dos2unix
       pkgs.tmux
+      #pkgs.nodePackages.relaxedjs
     ];
+
+  nix.nixPath =
+  [ # Use local nixpkgs checkout instead of channels.
+    "darwin-config=$HOME/.nixpkgs/darwin-configuration.nix"
+    "darwin=$HOME/Projects/nix-darwin"
+    "nixpkgs=$HOME/Projects/nixpkgs"
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -76,7 +83,7 @@ in
         alias zz='fasd_cd -d -i' # cd with interactive selection
         alias v='f -e vim' # quick opening files with vim
         alias vi='vim'           # alias vi to vim
-        alias drsl='NIX_PATH=darwin=$HOME/Projects/nix-darwin:darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$NIX_PATH darwin-rebuild switch' # switch with local repo
+        alias drsl='darwin-rebuild switch' # switch with local repo
       '';
 
     # environment variables
