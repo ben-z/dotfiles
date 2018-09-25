@@ -38,6 +38,7 @@ in
       myHunspell
       pkgs.dos2unix
       pkgs.tmux
+      pkgs.reattach-to-user-namespace
       #pkgs.nodePackages.relaxedjs
     ];
 
@@ -164,13 +165,13 @@ in
       " }
 
       " Use system clipboard {
-        if has('clipboard')
-          if has('unnamedplus')  " When possible use + register for copy-paste
-            set clipboard=unnamed,unnamedplus
-          else                   " On mac and Windows, use * register for copy-paste
-            set clipboard=unnamed
-          endif
-        endif
+      " if has('clipboard')
+      "   if has('unnamedplus')  " When possible use + register for copy-paste
+      "     set clipboard=unnamed,unnamedplus
+      "   else                   " On mac and Windows, use * register for copy-paste
+      "     set clipboard=unnamed
+      "   endif
+      " endif
       " }
 
       " Allow for cursor beyond last character {
