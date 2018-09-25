@@ -2,6 +2,10 @@
 
 let
   myHunspell = pkgs.hunspellWithDicts [pkgs.hunspellDicts.en-ca pkgs.hunspellDicts.en-us];
+
+  my_vim_configurable = pkgs.vim_configurable.override {
+    python = pkgs.python3;
+  };
 in
 {
   imports = [
@@ -95,6 +99,17 @@ in
   programs.vim = {
     enable = true;
     enableSensible = true;
+
+    # Custom vim package
+    package = my_vim_configurable.customize {
+      name = "vim";
+      vimrcConfig.customRC = config.environment.etc."vimrc".text;
+      vimrcConfig.vam = {
+        knownPlugins = pkgs.vimPlugins // config.programs.vim.extraKnownPlugins;
+        pluginDictionaries = config.programs.vim.plugins;
+      };
+    };
+
     extraKnownPlugins = {
       autoclose = pkgs.vimUtils.buildVimPluginFrom2Nix {
         name = "vim-autoclose-2018-06-16";
