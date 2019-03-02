@@ -57,6 +57,8 @@ in
   environment.shellAliases.pro = "cd ~/Projects";
   environment.shellAliases.g = "git";
   environment.shellAliases.gs = "git stash";
+  environment.shellAliases.gp = "git push";
+  environment.shellAliases.gd = "git diff";
 
   system.activationScripts.postActivation.text = ''
     rm -f "$HOME/.zgen/init.zsh" # reset zgen
