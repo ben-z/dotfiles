@@ -49,3 +49,6 @@
 [submodule "tmux/.tmux"]
 	path = tmux/.tmux
 	url = https://github.com/gpakosz/.tmux
+[submodule "nixpkgs/zsh/spaceship-prompt"]
+	path = nixpkgs/zsh/spaceship-prompt
+	url = https://github.com/denysdovhan/spaceship-prompt.git

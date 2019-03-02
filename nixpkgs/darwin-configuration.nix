@@ -4,6 +4,7 @@ let
   zgen-zsh = ./zsh/zgen.zsh;
   zsh-logging = ./zsh/logging.zsh;
   zsh-autoload = ./zsh/autoload;
+  zsh-spaceship-prompt = ./zsh/spaceship-prompt;
 in
 {
   # List packages installed in system profile. To search by name, run:
@@ -36,6 +37,9 @@ in
       #pkgs.nodePackages.relaxedjs
       #pkgs.tmux #TODO Use zsh
       pkgs.coreutils-prefixed
+      pkgs.fira-code
+      pkgs.tree
+      pkgs.jq
     ];
 
   environment.systemPath = [
@@ -46,9 +50,22 @@ in
   environment.postBuild = ''
   '';
 
+  environment.shellAliases.lsp = "lsof -i -n -P | grep LISTEN"; # List listening ports by current user
+  environment.shellAliases.lspa = "sudo lsof -i -n -P | grep LISTEN"; # List listening ports by all users
+  environment.shellAliases.dotfiles = "cd ~/Projects/dotfiles";
+  environment.shellAliases.treenodoc = "tree -I 'node_modules|jsdoc|docs'";
+  environment.shellAliases.pro = "cd ~/Projects";
+  environment.shellAliases.g = "git";
+  environment.shellAliases.gs = "git stash";
+
   system.activationScripts.postActivation.text = ''
-    rm -f "$HOME/.zgen/init.zsh"
+    rm -f "$HOME/.zgen/init.zsh" # reset zgen
     echo "Deleted $HOME/.zgen/init.zsh"
+  '';
+
+  system.activationScripts.preActivation.text = ''
+    ln -sf "${zsh-spaceship-prompt}"/spaceship.zsh "${zsh-autoload}"/prompt_spaceship_setup # allow zsh to use the spaceship theme
+    echo 'Created symlink: "${zsh-spaceship-prompt}"/spaceship.zsh -> "${zsh-autoload}"/prompt_spaceship_setup'
   '';
 
   nix.nixPath =
@@ -82,17 +99,29 @@ in
   system.defaults.trackpad.SecondClickThreshold = 0; # light force touch
   system.defaults.NSGlobalDomain."com.apple.trackpad.scaling" = "2"; # faster tracking
 
+  # Fonts
+  fonts = {
+    enableFontDir = true;
+    fonts = [ pkgs.fira-code ];
+  };
+
   # Shell
   programs.bash.enable = false;
   programs.zsh = {
     enable = true;
     enableCompletion = false; # too slow, we'll manully manage this
+    promptInit = "autoload -U promptinit && promptinit && prompt spaceship";
     interactiveShellInit = ''
       # Turn on when measuring plugin performance
       # zmodload zsh/zprof
 
       HISTSIZE=10000
       SAVEHIST=10000
+
+      bindkey -v # vi mode
+
+      setopt autocd # auto cd when only path is entered
+      setopt nomatch # throw an error on glob matching nothing
 
       fpath=($fpath "${zsh-autoload}")
       autoload -Uz init_color_vars
@@ -120,6 +149,9 @@ in
           zgen save
         fi
       fi
+
+      # Use the `clean` fast-syntax-highlighting theme
+      export FAST_THEME_NAME=clean
     '';
   };
   programs.nix-index.enable = true;
