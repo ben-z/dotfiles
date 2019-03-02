@@ -151,9 +151,6 @@ in
           zgen save
         fi
       fi
-
-      # Use the `clean` fast-syntax-highlighting theme
-      export FAST_THEME_NAME=clean
     '';
   };
   programs.nix-index.enable = true;

@@ -20,3 +20,8 @@ rm -f /Users/ben/.zgen/init.zsh && for i in $(seq 1 10); do ts=$(/run/current-sy
 export NIX_PATH=nixpkgs=$HOME/Projects/nixpkgs:darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:darwin=$HOME/Projects/nix-darwin # add nix paths
 $(nix-build '<darwin>' -A system --no-out-link)/sw/bin/darwin-rebuild switch # build nix-darwin and run darwin-rebuild
 ```
+
+### Post-build commands
+```bash
+fast-theme clean # set zsh fast-syntax-highlighting theme to clean
+```
