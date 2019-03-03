@@ -12,7 +12,7 @@ in
   environment.systemPackages =
     [ pkgs.fzf
       pkgs.gnupg
-      #pkgs.ripgrep
+      pkgs.ripgrep
       pkgs.neovim
       #pkgs.nodejs-10_x
       #pkgs.qemu
@@ -50,15 +50,20 @@ in
   environment.postBuild = ''
   '';
 
+  environment.shellAliases.l = "ls -hl";
   environment.shellAliases.lsp = "lsof -i -n -P | grep LISTEN"; # List listening ports by current user
   environment.shellAliases.lspa = "sudo lsof -i -n -P | grep LISTEN"; # List listening ports by all users
   environment.shellAliases.dotfiles = "cd ~/Projects/dotfiles";
   environment.shellAliases.treenodoc = "tree -I 'node_modules|jsdoc|docs'";
   environment.shellAliases.pro = "cd ~/Projects";
   environment.shellAliases.g = "git";
-  environment.shellAliases.gs = "git stash";
+  environment.shellAliases.gs = "git status";
+  environment.shellAliases.gsh = "git stash";
   environment.shellAliases.gp = "git push";
   environment.shellAliases.gd = "git diff";
+  environment.shellAliases.gc = "git commit";
+  environment.shellAliases.gcm = "git commit -m";
+  environment.shellAliases.gco = "git checkout";
 
   system.activationScripts.postActivation.text = ''
     rm -f "$HOME/.zgen/init.zsh" # reset zgen
