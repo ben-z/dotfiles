@@ -154,4 +154,28 @@ in
     '';
   };
   programs.nix-index.enable = true;
+
+  programs.tmux = {
+    enable = true;
+    enableSensible = true;
+    enableMouse = true;
+    enableFzf = true;
+    enableVim = true;
+    tmuxConfig = ''
+      set-option -g prefix2 M-Escape
+      bind-key M-Escape send-prefix -2
+
+      setw -g aggressive-resize off
+
+      bind 0 set status
+      bind S choose-session
+      bind-key -r "<" swap-window -t -1
+      bind-key -r ">" swap-window -t +1
+      bind-key -n M-r run "tmux send-keys -t .+ C-l Up Enter"
+      bind-key -n M-R run "tmux send-keys -t $(hostname -s | awk -F'-' '{print tolower($NF)}') C-l Up Enter"
+      set -g status-bg black
+      set -g status-fg white
+      set -g status-right '#[fg=white]#(id -un)@#(hostname)   #(cat /run/current-system/darwin-version)'
+    '';
+  };
 }
