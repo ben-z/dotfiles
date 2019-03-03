@@ -100,6 +100,9 @@ in
   system.defaults.trackpad.FirstClickThreshold = 0; # light clicking
   system.defaults.trackpad.SecondClickThreshold = 0; # light force touch
   system.defaults.NSGlobalDomain."com.apple.trackpad.scaling" = "2"; # faster tracking
+  system.defaults.NSGlobalDomain.AppleMeasurementUnits = "Centimeters";
+  system.defaults.NSGlobalDomain.AppleMetricUnits = 1;
+  system.defaults.NSGlobalDomain.AppleTemperatureUnit = "Celsius";
 
   # Fonts
   fonts = {
