@@ -5,6 +5,31 @@ let
   zsh-logging = ./zsh/logging.zsh;
   zsh-autoload = ./zsh/autoload;
   zsh-spaceship-prompt = ./zsh/spaceship-prompt;
+  my-neovim = pkgs.neovim.override {
+    configure = {
+      customRC = ''
+        " Fzf
+        let g:fzf_command_prefix = 'Fzf'
+        " This is the default extra key bindings
+        let g:fzf_action = {
+          \ 'ctrl-t': 'tab split',
+          \ 'ctrl-x': 'split',
+          \ 'ctrl-v': 'vsplit' }
+        nmap <silent> <C-p> :<c-u>FzfFiles<CR>
+        nmap <C-j> :tabp<cr>
+        nmap <C-k> :tabn<cr>
+      '';
+      plug.plugins = with pkgs.vimPlugins; [
+        vim-nix
+        vim-javascript
+        yats-vim # typescript syntax
+        deoplete-nvim # async completion
+        denite-nvim # async interfaces
+        fzf-vim
+        fzfWrapper
+      ];
+    };
+  };
 in
 {
   # List packages installed in system profile. To search by name, run:
@@ -13,8 +38,8 @@ in
     [ pkgs.fzf
       pkgs.gnupg
       pkgs.ripgrep
-      pkgs.neovim
-      #pkgs.nodejs-10_x
+      #pkgs.neovim
+      pkgs.nodejs-10_x
       #pkgs.qemu
       #pkgs.aws
       #pkgs.gdb
@@ -40,9 +65,11 @@ in
       pkgs.fira-code
       pkgs.tree
       pkgs.jq
+      my-neovim
     ];
 
   environment.systemPath = [
+    "$HOME/.npm/bin"
   ];
 
   environment.variables = { EDITOR = "vim"; };
