@@ -18,6 +18,12 @@ let
         nmap <silent> <C-p> :<c-u>FzfFiles<CR>
         nmap <C-j> :tabp<cr>
         nmap <C-k> :tabn<cr>
+
+        " deoplete
+        let g:deoplete#enable_at_startup = 1
+
+        " <TAB>: completion.
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
       '';
       plug.plugins = with pkgs.vimPlugins; [
         vim-nix
