@@ -5,7 +5,9 @@ let
   zsh-logging = ./zsh/logging.zsh;
   zsh-autoload = ./zsh/autoload;
   zsh-spaceship-prompt = ./zsh/spaceship-prompt;
+  my-nvim-plugins = pkgs.callPackage ./nvim/plugins.nix {};
   my-neovim = pkgs.neovim.override {
+    withNodeJs = true;
     configure = {
       customRC = ''
         " Fzf
@@ -24,8 +26,11 @@ let
 
         " <TAB>: completion.
         inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+        " automatic rustfmt on save.
+	let g:rustfmt_autosave = 1
       '';
-      plug.plugins = with pkgs.vimPlugins; [
+      plug.plugins = with pkgs.vimPlugins // my-nvim-plugins; [
         vim-nix
         vim-javascript
         yats-vim # typescript syntax
@@ -33,6 +38,9 @@ let
         denite-nvim # async interfaces
         fzf-vim
         fzfWrapper
+        rust-vim
+        nvim-typescript
+        vim-airline
       ];
     };
   };
@@ -71,6 +79,8 @@ in
       pkgs.fira-code
       pkgs.tree
       pkgs.jq
+      pkgs.fd
+      pkgs.rustup
       my-neovim
     ];
 
@@ -97,6 +107,7 @@ in
   environment.shellAliases.gc = "git commit";
   environment.shellAliases.gcm = "git commit -m";
   environment.shellAliases.gco = "git checkout";
+  environment.shellAliases.vi = "nvim";
 
   system.activationScripts.postActivation.text = ''
     rm -f "$HOME/.zgen/init.zsh" # reset zgen
