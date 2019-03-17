@@ -2,9 +2,12 @@
 
 let
   zgen-zsh = ./zsh/zgen.zsh;
-  zsh-logging = ./zsh/logging.zsh;
   zsh-autoload = ./zsh/autoload;
-  zsh-spaceship-prompt = ./zsh/spaceship-prompt;
+  zsh-pure-prompt = pkgs.fetchgit {
+    url = "https://github.com/sindresorhus/pure";
+    rev = "47f9bfd3463e10852c377ae5476367c28dafd351";
+    sha256 = "1jpahk5rc1cs04m8r2y5djsighnw67dxqm6i6ygbip4wn39abkna";
+  };
   my-nvim-plugins = pkgs.callPackage ./nvim/plugins.nix {};
   my-neovim = pkgs.neovim.override {
     withNodeJs = true;
@@ -115,8 +118,11 @@ in
   '';
 
   system.activationScripts.preActivation.text = ''
-    ln -sf "${zsh-spaceship-prompt}"/spaceship.zsh "${zsh-autoload}"/prompt_spaceship_setup # allow zsh to use the spaceship theme
-    echo 'Created symlink: "${zsh-spaceship-prompt}"/spaceship.zsh -> "${zsh-autoload}"/prompt_spaceship_setup'
+    rm -rf "${zsh-autoload}"/*
+    # TODO: figure out how to make zsh-autoload a derivation
+
+    ln -sf "${zsh-pure-prompt}"/pure.zsh "${zsh-autoload}"/prompt_pure_setup
+    echo 'Created symlink: "${zsh-pure-prompt}"/pure.zsh -> "${zsh-autoload}"/prompt_pure_setup'
   '';
 
   nix.nixPath =
@@ -164,7 +170,8 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = false; # too slow, we'll manully manage this
-    promptInit = "autoload -U promptinit && promptinit && prompt spaceship";
+    # promptInit = "autoload -U promptinit && promptinit && prompt pure";
+    promptInit = "";
     interactiveShellInit = ''
       # Turn on when measuring plugin performance
       # zmodload zsh/zprof
@@ -178,19 +185,15 @@ in
       setopt nomatch # throw an error on glob matching nothing
 
       fpath=($fpath "${zsh-autoload}")
-      autoload -Uz init_color_vars
+      # autoload -Uz init_color_vars
 
       if [ -f "${zgen-zsh}" ]; then
         source "${zgen-zsh}" # ~25ms
       fi
 
-      if [ -f "${zsh-logging}" ]; then
-        source "${zsh-logging}"
-      fi
-
       if [ -n "$(command -v zgen)" ]; then
         if ! zgen saved; then # TODO: auto invalidate on build
-          e_header "Creating a zgen save"
+          echo "========== Creating a zgen save =========="
 
           # plugins
           zgen load zsh-users/zsh-autosuggestions # <10ms
@@ -198,6 +201,9 @@ in
           zgen load zsh-users/zsh-history-substring-search # ~5ms
           zgen oh-my-zsh plugins/shrink-path # ~2ms
           zgen load junegunn/fzf shell # ~2ms
+          zgen load mafredri/zsh-async
+          zgen load sindresorhus/pure
+
           #zgen oh-my-zsh plugins/tmux
           # save all to init script
           zgen save
