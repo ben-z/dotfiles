@@ -27,7 +27,7 @@ let
         inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
         " automatic rustfmt on save.
-	let g:rustfmt_autosave = 1
+        let g:rustfmt_autosave = 1
 
         " Maintain undo history between sessions
         set undofile
