@@ -1,4 +1,4 @@
-# When used in conjunction with the following aliases, replaces `eval "$(fasd --init auto)"`
+# When used in conjunction with the following lines, replaces `eval "$(fasd --init auto)"`
 #   alias a='fasd -a'        # any
 #   alias s='fasd -si'       # show / search / select
 #   alias d='fasd -d'        # directory
@@ -7,6 +7,13 @@
 #   alias sf='fasd -sif'     # interactive file selection
 #   alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 #   alias zz='fasd_cd -d -i' # cd with interactive selection
+#
+#   # fasd: add zsh hook (same as eval "$(fasd --init zsh-hook)")
+#   _fasd_preexec() {
+#     { eval "fasd --proc $(fasd --sanitize $2)"; } >> "/dev/null" 2>&1
+#   }
+#   autoload -Uz add-zsh-hook
+#   add-zsh-hook preexec _fasd_preexec
 
 if [ $# -le 1 ]
 then

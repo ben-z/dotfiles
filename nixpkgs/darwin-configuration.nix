@@ -232,6 +232,13 @@ in
 
       # vim undo dir
       mkdir -p $HOME/.vim/undodir
+
+      # fasd: add zsh hook (same as eval "$(fasd --init zsh-hook)")
+      _fasd_preexec() {
+        { eval "fasd --proc $(fasd --sanitize $2)"; } >> "/dev/null" 2>&1
+      }
+      autoload -Uz add-zsh-hook
+      add-zsh-hook preexec _fasd_preexec
     '';
   };
   programs.nix-index.enable = true;
