@@ -3,11 +3,6 @@
 let
   zgen-zsh = ./zsh/zgen.zsh;
   zsh-autoload = ./zsh/autoload;
-  zsh-pure-prompt = pkgs.fetchgit {
-    url = "https://github.com/sindresorhus/pure";
-    rev = "47f9bfd3463e10852c377ae5476367c28dafd351";
-    sha256 = "1jpahk5rc1cs04m8r2y5djsighnw67dxqm6i6ygbip4wn39abkna";
-  };
   my-nvim-plugins = pkgs.callPackage ./nvim/plugins.nix {};
   my-neovim = pkgs.neovim.override {
     withNodeJs = true;
@@ -120,9 +115,6 @@ in
   system.activationScripts.preActivation.text = ''
     rm -rf "${zsh-autoload}"/*
     # TODO: figure out how to make zsh-autoload a derivation
-
-    ln -sf "${zsh-pure-prompt}"/pure.zsh "${zsh-autoload}"/prompt_pure_setup
-    echo 'Created symlink: "${zsh-pure-prompt}"/pure.zsh -> "${zsh-autoload}"/prompt_pure_setup'
   '';
 
   nix.nixPath =
@@ -170,8 +162,7 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = false; # too slow, we'll manully manage this
-    # promptInit = "autoload -U promptinit && promptinit && prompt pure";
-    promptInit = "";
+    promptInit = ""; # use zgen to load the prompt package (it's faster than promptinit)
     interactiveShellInit = ''
       # Turn on when measuring plugin performance
       # zmodload zsh/zprof
