@@ -35,6 +35,9 @@ let
 
         " Remove trailing whitespace on write
         autocmd BufWritePre * :%s/\s\+$//e
+
+        " disable search highlighting on "//"
+        nnoremap // :nohlsearch<CR>
       '';
       plug.plugins = with pkgs.vimPlugins // my-nvim-plugins; [
         vim-nix
@@ -119,8 +122,18 @@ in
   environment.shellAliases.gcm = "git commit -m";
   environment.shellAliases.gco = "git checkout";
   environment.shellAliases.vi = "nvim";
+
+  # fasd
+  environment.shellAliases.a = "fasd -a"; # any
+  environment.shellAliases.s = "fasd -si"; # show / search / select
+  environment.shellAliases.d = "fasd -d"; # directory
+  environment.shellAliases.f = "fasd -f"; # file
+  environment.shellAliases.sd = "fasd -sid"; # interactive directory selection
+  environment.shellAliases.sf = "fasd -sif"; # interactive file selection
+  environment.shellAliases.z = "fasd_cd -d"; # cd, same functionality as j in autojump
+  environment.shellAliases.zz = "fasd_cd -d -i"; # cd with interactive selection
   environment.shellAliases.v = "f -e nvim";
-  environment.shellAliases.j = "f";
+  environment.shellAliases.j = "z";
 
   system.activationScripts.postActivation.text = ''
     rm -f "$HOME/.zgen/init.zsh" # reset zgen
@@ -128,7 +141,7 @@ in
   '';
 
   system.activationScripts.preActivation.text = ''
-    rm -rf "${zsh-autoload}"/*
+    # rm -rf "${zsh-autoload}"/*
     # TODO: figure out how to make zsh-autoload a derivation
   '';
 
@@ -191,7 +204,7 @@ in
       setopt nomatch # throw an error on glob matching nothing
 
       fpath=($fpath "${zsh-autoload}")
-      # autoload -Uz init_color_vars
+      autoload -Uz fasd_cd
 
       if [ -f "${zgen-zsh}" ]; then
         source "${zgen-zsh}" # ~25ms
@@ -209,6 +222,7 @@ in
           zgen load junegunn/fzf shell # ~2ms
           zgen load mafredri/zsh-async
           zgen load sindresorhus/pure
+          zgen load andrewferrier/fzf-z
 
           #zgen oh-my-zsh plugins/tmux
           # save all to init script
@@ -218,9 +232,6 @@ in
 
       # vim undo dir
       mkdir -p $HOME/.vim/undodir
-
-      # fasd
-      eval "$(fasd --init auto)"
     '';
   };
   programs.nix-index.enable = true;
