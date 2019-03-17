@@ -19,14 +19,19 @@ let
         nmap <C-j> :tabp<cr>
         nmap <C-k> :tabn<cr>
 
-        " deoplete
-        let g:deoplete#enable_at_startup = 1
+        " deoplete: enable when entering insert mode to speed up startup
+        let g:deoplete#enable_at_startup = 0
+        autocmd InsertEnter * call deoplete#enable()
 
         " <TAB>: completion.
         inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
         " automatic rustfmt on save.
 	let g:rustfmt_autosave = 1
+
+        " Maintain undo history between sessions
+        set undofile
+        set undodir=$HOME/.vim/undodir
       '';
       plug.plugins = with pkgs.vimPlugins // my-nvim-plugins; [
         vim-nix
@@ -34,11 +39,12 @@ let
         yats-vim # typescript syntax
         deoplete-nvim # async completion
         denite-nvim # async interfaces
-        fzf-vim
+        fzf-vim # ~12ms
         fzfWrapper
         rust-vim
         nvim-typescript
-        vim-airline
+        vim-airline # ~70ms
+        vim-lastplace # remember last cursor position, ~5ms
       ];
     };
   };
@@ -94,9 +100,9 @@ in
   environment.shellAliases.l = "ls -hl";
   environment.shellAliases.lsp = "lsof -i -n -P | grep LISTEN"; # List listening ports by current user
   environment.shellAliases.lspa = "sudo lsof -i -n -P | grep LISTEN"; # List listening ports by all users
-  environment.shellAliases.dotfiles = "cd ~/Projects/dotfiles";
+  environment.shellAliases.dotfiles = "cd $HOME/Projects/dotfiles";
   environment.shellAliases.treenodoc = "tree -I 'node_modules|jsdoc|docs'";
-  environment.shellAliases.pro = "cd ~/Projects";
+  environment.shellAliases.pro = "cd $HOME/Projects";
   environment.shellAliases.g = "git";
   environment.shellAliases.gs = "git status";
   environment.shellAliases.gsh = "git stash";
@@ -200,6 +206,9 @@ in
           zgen save
         fi
       fi
+
+      # vim undo dir
+      mkdir -p $HOME/.vim/undodir
     '';
   };
   programs.nix-index.enable = true;
