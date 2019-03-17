@@ -32,6 +32,9 @@ let
         " Maintain undo history between sessions
         set undofile
         set undodir=$HOME/.vim/undodir
+
+        " Remove trailing whitespace on write
+        autocmd BufWritePre * :%s/\s\+$//e
       '';
       plug.plugins = with pkgs.vimPlugins // my-nvim-plugins; [
         vim-nix
