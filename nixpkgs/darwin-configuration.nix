@@ -88,6 +88,7 @@ in
       pkgs.jq
       pkgs.fd
       pkgs.rustup
+      pkgs.fasd
       my-neovim
     ];
 
@@ -95,7 +96,10 @@ in
     "$HOME/.npm/bin"
   ];
 
-  environment.variables = { EDITOR = "vim"; };
+  environment.variables = {
+    EDITOR = "nvim";
+    FZFZ_RECENT_DIRS_TOOL = "fasd";
+  };
 
   environment.postBuild = ''
   '';
@@ -115,6 +119,8 @@ in
   environment.shellAliases.gcm = "git commit -m";
   environment.shellAliases.gco = "git checkout";
   environment.shellAliases.vi = "nvim";
+  environment.shellAliases.v = "f -e nvim";
+  environment.shellAliases.j = "f";
 
   system.activationScripts.postActivation.text = ''
     rm -f "$HOME/.zgen/init.zsh" # reset zgen
@@ -212,6 +218,9 @@ in
 
       # vim undo dir
       mkdir -p $HOME/.vim/undodir
+
+      # fasd
+      eval "$(fasd --init auto)"
     '';
   };
   programs.nix-index.enable = true;
