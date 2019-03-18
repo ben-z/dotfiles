@@ -94,6 +94,7 @@ in
       pkgs.rustup
       pkgs.fasd
       my-neovim
+      pkgs.sqlite
     ];
 
   environment.systemPath = [
