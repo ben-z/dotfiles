@@ -14,4 +14,14 @@ with pkgs.vimUtils; {
       HOME=. ./install.sh
     '';
   };
+
+  vim-plist = buildVimPlugin {
+    name = "vim-plist";
+    src = fetchgit {
+      url = "https://github.com/darfink/vim-plist";
+      rev = "67280fb32b88ad75e255068dfe69b9f069421618";
+      sha256 = "1j3s26bmpfmnbaxhld5x49k9iq1c8xhgmspgqifgxzx8695wgmms";
+    };
+    dependencies = [];
+  };
 }

@@ -51,6 +51,7 @@ let
         nvim-typescript
         vim-airline # ~70ms
         vim-lastplace # remember last cursor position, ~5ms
+        vim-plist
       ];
     };
   };
