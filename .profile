@@ -1,6 +1,6 @@
 export N_PREFIX=$HOME/.n
-export PATH=$PATH:$HOME/.n/bin
-export PATH=$PATH:$HOME/Library/Python/3.7/bin
+export PATH=$PATH:$N_PREFIX/bin
+# export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 alias l='ls -hl';
 alias lsp='lsof -i -n -P | grep LISTEN'; # List listening ports by current user
@@ -21,3 +21,6 @@ alias mkvenv='python3 -m venv .$(basename $(pwd))-venv';
 alias activate='source .$(basename $(pwd))-venv/bin/activate';
 
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
+
+export PATH="/usr/local/anaconda3/bin:$PATH"
+export UE4_ROOT="/Users/shared/EpicGames/UE_4.24"
